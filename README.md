@@ -1,4 +1,4 @@
-# Herní police
+# Deskovky
 
 Filtr deskových her ze sbírky **@JakSeRodi** na BoardGameGeek.
 Data se stahují automaticky každý den ráno a web běží zdarma na GitHub Pages.
@@ -57,6 +57,20 @@ Po přidání se otevírá na celou obrazovku jako běžná aplikace a funguje i
 - **Vlastní poznámky:** na BGG u hry v kolekci vyplň komentář (Comment). Web ho ukáže v detailu hry jako „Naše poznámka“.
 - Výsledek uloží do `data/games.json` a web se znovu zveřejní.
 - Když přidáš hru do kolekce na BGG, na webu se objeví nejpozději další den ráno. Hned to jde tlačítkem **Run workflow**.
+
+## Popisy her česky (volitelné)
+BGG má popisy jen anglicky. Web je umí automaticky přeložit přes DeepL (zdarma do 500 000 znaků měsíčně, stačí na stovky her):
+1. Založ si účet **DeepL API Free** na deepl.com/pro-api (při registraci chtějí kartu kvůli ověření, free plán se nestrhává).
+2. V účtu zkopíruj **Authentication Key** (končí na `:fx`).
+3. V repozitáři **Settings → Secrets and variables → Actions → New repository secret**: Name `DEEPL_KEY`, Secret = klíč.
+4. Spusť **Run workflow**. Každý popis se přeloží jen jednou a uloží se.
+Bez klíče web ukazuje anglický popis a tlačítko „Přeložit do češtiny“.
+
+## Novinka týdne
+Každé ráno se z RSS zdrojů (BoardGameWire, Dicebreaker, Google News a další v `scripts/config.mjs`) vybere jedna zpráva za posledních 7 dní. Vyhrává ta, o které píše víc zdrojů a která se týká ocenění, velkých kampaní, akvizic a podobně. Recenze a slevy se přeskakují.
+
+## České hry
+Hra se označí jako česká automaticky, když má českého autora (seznam v `scripts/config.mjs` nebo jméno s ř, ě, ů či koncovkou -ová) nebo ji vydalo české studio (Czech Games Edition, TLAMA games, Delicious Games…). Kdyby nějaká chyběla, přidej její BGG ID do `CZ_EXTRA_IDS`.
 
 ## Úpravy
 - `scripts/config.mjs`: jiný BGG uživatel, překlady kategorií, seznam českých autorů.

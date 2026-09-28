@@ -1,7 +1,7 @@
 {
-  "name": "Herní police",
-  "short_name": "Herní police",
-  "description": "Filtr deskových her z naší sbírky na BoardGameGeek",
+  "name": "Deskovky",
+  "short_name": "Deskovky",
+  "description": "Naše deskovky: filtr, herní večer a statistiky ze sbírky na BoardGameGeek",
   "lang": "cs",
   "start_url": "./",
   "scope": "./",

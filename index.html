@@ -13,14 +13,14 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Herní police">
+<meta name="apple-mobile-web-app-title" content="Deskovky">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Herní police · Co si dnes zahrajeme?">
+<meta property="og:title" content="Deskovky · Co si dnes zahrajeme?">
 <meta property="og:description" content="Naše deskovky na jednom místě. Filtr podle hráčů, času, obtížnosti a hodnocení z BoardGameGeek.">
 <meta property="og:image" content="icons/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}</style>
-<title>Herní police</title>
+<title>Deskovky</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap">
@@ -39,7 +39,7 @@
   --amb:#1C5A45; --amb-2:#4A3A12;
   --shadow:0 1px 0 var(--glass-hi) inset,0 24px 48px -24px rgba(0,0,0,.7);
   --r-hi:#1C8D59; --r-mid:#2B7BB5; --r-low:#6559AE;
-  --ok:#5FD39A; --ok-soft:rgba(95,211,154,.13);
+  --ok:#5FD39A; --ok-soft:rgba(95,211,154,.13);--old-bar:#6E6448;
   --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
   --f-body:"Geist","Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,sans-serif;
   --f-mono:"Geist Mono","Cascadia Mono",ui-monospace,"SF Mono",Menlo,monospace;
@@ -59,7 +59,7 @@
     --brass:#8C6413; --brass-2:#AE7E1D; --brass-ink:#FFF8E7; --brass-soft:rgba(140,100,19,.12);
     --amb:#9FCBB6; --amb-2:#E8D29E;
     --shadow:0 1px 0 var(--glass-hi) inset,0 20px 40px -24px rgba(15,31,25,.35);
-    --ok:#12804E; --ok-soft:rgba(18,128,78,.1);
+    --ok:#12804E; --ok-soft:rgba(18,128,78,.1);--old-bar:#CDBD92;
   }
 }
 :root[data-theme="light"]{
@@ -72,7 +72,7 @@
   --brass:#8C6413; --brass-2:#AE7E1D; --brass-ink:#FFF8E7; --brass-soft:rgba(140,100,19,.12);
   --amb:#9FCBB6; --amb-2:#E8D29E;
   --shadow:0 1px 0 var(--glass-hi) inset,0 20px 40px -24px rgba(15,31,25,.35);
-  --ok:#12804E; --ok-soft:rgba(18,128,78,.1);
+  --ok:#12804E; --ok-soft:rgba(18,128,78,.1);--old-bar:#CDBD92;
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
@@ -84,7 +84,7 @@
   --brass:#DDB464; --brass-2:#F4D690; --brass-ink:#1B1406; --brass-soft:rgba(221,180,100,.14);
   --amb:#1C5A45; --amb-2:#4A3A12;
   --shadow:0 1px 0 var(--glass-hi) inset,0 24px 48px -24px rgba(0,0,0,.7);
-  --ok:#5FD39A; --ok-soft:rgba(95,211,154,.13);
+  --ok:#5FD39A; --ok-soft:rgba(95,211,154,.13);--old-bar:#6E6448;
 }
 
 *{box-sizing:border-box}
@@ -155,7 +155,7 @@ kbd{font:500 11px/1 var(--f-mono);color:var(--muted);border:1px solid var(--line
 .top-actions{display:flex;gap:8px;align-items:center;flex:none}
 
 /* ---------- hero ---------- */
-.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px;padding-block:26px 18px;align-items:stretch}
+.hero{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px;padding-block:26px 18px;align-items:stretch}
 .hero-main{border-radius:24px;padding:26px 28px;display:grid;align-content:space-between;gap:18px;position:relative;overflow:hidden}
 .hero-main::after{content:"";position:absolute;right:-60px;bottom:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,var(--brass-soft),transparent 70%);pointer-events:none}
 h1{font:500 clamp(40px,4.8vw,72px)/.95 var(--f-display);letter-spacing:-.025em;margin:8px 0 0;text-wrap:balance}
@@ -439,7 +439,8 @@ dialog.closing{animation:dlg-out .25s var(--ease) forwards}
 .n-dots i.on{background:var(--brass);width:40px}
 .n-body{flex:1;overflow:auto;overscroll-behavior:contain;padding:8px clamp(18px,4vw,48px) 28px;display:flex;flex-direction:column;min-width:0}
 .n-step{min-width:0}
-.n-step{display:flex;flex-direction:column;gap:22px;flex:1;animation:step-in .45s var(--ease)}
+.n-step{display:flex;flex-direction:column;gap:22px;flex:1 0 auto;animation:step-in .45s var(--ease)}
+.n-step>*{flex-shrink:0}
 .n-step.back{animation-name:step-back}
 @keyframes step-in{from{opacity:0;transform:translateX(26px)}}
 @keyframes step-back{from{opacity:0;transform:translateX(-26px)}}
@@ -464,8 +465,8 @@ dialog.closing{animation:dlg-out .25s var(--ease) forwards}
 .n-summary svg{color:var(--brass)}
 .n-notice{font-size:13.5px;color:var(--brass);background:var(--brass-soft);border-radius:12px;padding:10px 14px;margin:0}
 .picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.pick{border-radius:22px;background:var(--glass-2);border:1px solid var(--glass-edge);display:flex;flex-direction:column;overflow:hidden;animation:deal .7s var(--ease) both;animation-delay:calc(var(--i) * 110ms);transform-origin:50% 120%}
-@keyframes deal{from{opacity:0;transform:translateY(60px) rotate(calc((var(--i) - 1) * 8deg)) scale(.9)}}
+.pick{border-radius:22px;background:var(--glass-2);border:1px solid var(--glass-edge);display:flex;flex-direction:column;overflow:hidden;animation:deal .7s var(--ease) both;animation-delay:calc(var(--i) * 110ms);transform-origin:50% 50%}
+@keyframes deal{from{opacity:0;transform:rotate(calc((var(--i) - 1) * 2deg)) scale(.94)}}
 .pick .cover{margin:6px 6px 0;aspect-ratio:4/3}
 .pick .tip{position:absolute;top:10px;left:10px;z-index:4;font:600 10px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:7px 9px;border-radius:8px;background:linear-gradient(150deg,var(--brass-2),var(--brass));color:var(--brass-ink)}
 .pick-b{padding:14px 16px 16px;display:grid;gap:10px;flex:1;align-content:start}
@@ -490,6 +491,85 @@ footer p{margin:0}
 .bgg b{font-family:var(--f-mono);color:#FF5100;letter-spacing:.04em}
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 28px);translate:-50% 20px;z-index:200;padding:12px 18px;border-radius:14px;font-weight:500;opacity:0;pointer-events:none;transition:opacity .3s,translate .4s var(--spring);max-width:calc(100% - 32px);overflow-wrap:anywhere}
 .toast.show{opacity:1;translate:-50% 0}
+
+/* ---------- vějíř karet v úvodu (karty se nepřekrývají) ---------- */
+.hero-main{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-areas:"t f" "c f";align-content:stretch;column-gap:20px}
+.hero-text{grid-area:t}.hero-cta{grid-area:c;align-self:end}
+.fan{grid-area:f;display:flex;justify-content:center;align-items:center;gap:12px;z-index:1;padding:8px 0 18px}
+.fan-card{position:relative;flex:1 1 0;max-width:132px;aspect-ratio:3/4;padding:0;border-radius:14px;border:1px solid rgba(244,214,144,.45);
+  display:grid;place-items:center;overflow:hidden;cursor:pointer;transform-origin:50% 100%;
+  background:radial-gradient(120% 90% at 50% 20%,color-mix(in oklab,var(--c) 85%,white 10%),color-mix(in oklab,var(--c) 55%,black 60%) 75%);
+  box-shadow:0 18px 30px -14px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.18);
+  --r:calc((var(--i) - 1) * 5deg);--dy:calc((var(--i) - 1) * (var(--i) - 1) * 10px);transform:translateY(var(--dy)) rotate(var(--r));
+  transition:transform .5s var(--spring),box-shadow .3s;animation:fan-in .9s var(--ease) both;animation-delay:calc(var(--i) * 90ms + 120ms)}
+.fan-card img{width:86%;height:86%;object-fit:contain;filter:drop-shadow(0 8px 10px rgba(0,0,0,.45))}
+.fan-card span{font:italic 600 26px var(--f-display);color:rgba(255,255,255,.85)}
+.fan-card .rk{position:absolute;left:8px;top:8px;font:600 10px/1 var(--f-mono);padding:4px 6px;border-radius:6px;background:rgba(6,18,14,.66);color:#F4D690;letter-spacing:.06em}
+.fan-card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.22) 45%,transparent 60%);transform:translateX(-120%);transition:transform .8s var(--ease)}
+@media (hover:hover){
+  .fan-card:hover{transform:translateY(calc(var(--dy) - 12px)) rotate(var(--r)) ;box-shadow:0 30px 40px -16px rgba(0,0,0,.8)}
+  .fan-card:hover::after{transform:translateX(120%)}
+}
+.fan-card:active{transform:translateY(calc(var(--dy) - 6px)) rotate(var(--r)) scale(.98)}
+@keyframes fan-in{from{opacity:0;transform:translateY(46px) rotate(0) scale(.9)}}
+
+/* ---------- novinka týdne ---------- */
+.news{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 18px;align-items:center;margin:0 0 6px;padding:16px 20px;border-radius:20px;text-decoration:none;color:var(--ink);
+  background:linear-gradient(100deg,var(--brass-soft),transparent 60%),var(--glass);border:1px solid color-mix(in oklab,var(--brass) 30%,transparent);transition:border-color .2s,transform .3s var(--ease)}
+a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
+.news .n-ic{grid-row:1/4;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--brass-soft);color:var(--brass)}
+.news .eyebrow,.news strong,.news .news-src{grid-column:2;min-width:0}
+.news strong{font:italic 600 clamp(19px,1.8vw,24px)/1.18 var(--f-display);letter-spacing:-.01em;text-wrap:balance}
+.news .news-src{font:500 12.5px var(--f-mono);color:var(--muted)}
+.news .n-go{grid-row:1/4;grid-column:3;color:var(--brass)}
+
+/* ---------- řazení ---------- */
+.sortbar{width:100%;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.sort-lab{font:500 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:4px;flex:none}
+.sort-chip{flex:none;height:36px;border-radius:11px;border:1px solid var(--line-2);background:transparent;padding:0 12px;font-size:13px;font-weight:500;color:var(--ink-2);transition:all .2s var(--ease);white-space:nowrap}
+.sort-chip:hover{border-color:var(--brass);color:var(--ink)}
+.sort-chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+
+/* ---------- graf roků vydání ---------- */
+.ychart{border-radius:22px;padding:22px 22px 18px;display:grid;gap:14px;min-width:0}
+.yc-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
+.yc-head h3{margin:0;font:italic 600 24px/1.1 var(--f-display)}
+.yc-head p{margin:4px 0 0;color:var(--muted);font-size:13px;max-width:62ch}
+.yc-big{text-align:right}
+.yc-big b{display:block;font:500 40px/1 var(--f-display);color:var(--brass);font-variant-numeric:lining-nums}
+.yc-big span{font-size:12.5px;color:var(--muted)}
+.yc-legend{display:flex;gap:16px;font-size:12.5px;color:var(--ink-2)}
+.yc-legend span{display:inline-flex;align-items:center;gap:7px}
+.yc-legend i{width:12px;height:12px;border-radius:3px;background:var(--brass)}
+.yc-legend i.old{background:var(--old-bar)}
+.yc-body{display:grid;grid-template-columns:26px minmax(0,1fr);gap:6px;margin-top:10px}
+.yc-y{position:relative;height:170px;font:400 10.5px var(--f-mono);color:var(--muted)}
+.yc-y span{position:absolute;right:0;translate:0 50%}
+.yc-wrap{position:relative;height:170px}
+.yc-grid i{position:absolute;left:0;right:0;border-top:1px solid var(--line)}
+.yc-grid i.base{border-top-color:var(--line-2)}
+.yc-plot{position:absolute;inset:0;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:2px;align-items:end}
+.yb{height:100%;border:0;padding:0;background:none;display:flex;align-items:flex-end;cursor:pointer;border-radius:4px 4px 0 0;position:relative;min-width:0}
+.yb::before{content:"";position:absolute;inset:0 -1px;border-radius:6px;background:var(--line);opacity:0;transition:opacity .15s}
+.yb:hover::before,.yb:focus-visible::before{opacity:.8}
+.yb.zero{cursor:default}.yb.zero::before{display:none}
+.yb i{position:relative;display:block;width:100%;height:var(--h);min-height:2px;border-radius:4px 4px 0 0;background:var(--old-bar);transform-origin:bottom;animation:grow .8s var(--ease) both;animation-delay:calc(var(--k) * 14ms)}
+.yb.new i{background:linear-gradient(var(--brass-2),var(--brass))}
+.yb.zero i{min-height:0;height:0}
+@keyframes grow{from{transform:scaleY(0)}}
+.yc-pivot{position:absolute;top:-14px;bottom:0;border-left:1.5px dashed color-mix(in oklab,var(--brass) 70%,transparent);pointer-events:none}
+.yc-pivot b{position:absolute;top:-4px;left:5px;font:500 10.5px var(--f-mono);color:var(--brass)}
+.yc-x{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:2px;margin-left:32px;font:400 10.5px var(--f-mono);color:var(--muted);height:14px}
+.yc-x span{display:flex;justify-content:center;white-space:nowrap;overflow:visible}
+.yc-tip{position:absolute;z-index:5;pointer-events:none;padding:8px 11px;border-radius:10px;background:var(--panel-3);border:1px solid var(--line-2);box-shadow:0 12px 24px -10px rgba(0,0,0,.5);font-size:12.5px;white-space:nowrap;translate:-50% 0;max-width:260px}
+.yc-tip b{font-family:var(--f-mono);font-weight:500}
+.yc-tip small{display:block;color:var(--muted);white-space:normal;margin-top:2px;min-width:180px}
+
+.mt{font:500 10px var(--f-mono);letter-spacing:.06em;text-transform:none;color:var(--muted);opacity:.8;margin-left:8px}
+.desc-act{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:6px}
+.desc-act .linkbtn{display:inline-flex;align-items:center;gap:5px;text-decoration:none}
+.foot-h{font-size:13px;min-height:36px;gap:14px}
+.lbl-s{display:none}
 .dock,.scrim,.m-only{display:none}
 
 /* =============================================================
@@ -508,20 +588,40 @@ footer p{margin:0}
   .hero-main{padding:20px 18px 18px;border-radius:22px;gap:14px}
   .hero-main .eyebrow{font-size:10px}
   h1{font-size:clamp(34px,10vw,48px)}
-  .hero-cta{display:grid;grid-template-columns:1fr auto}
+  .hero-cta{display:grid;grid-template-columns:minmax(0,1fr) auto}
+  .hero-cta .gold{min-width:0;padding:0 16px}
   .hero-cta .gold{height:56px;font-size:16px}
   .hero-cta .btn:not(.gold){width:56px;height:56px;padding:0}
   .hero-cta .btn:not(.gold) .lbl{display:none}
   .bento{display:flex;overflow-x:auto;scrollbar-width:none;gap:10px;margin-inline:calc(-1 * clamp(16px,2.6vw,36px));padding-inline:clamp(16px,2.6vw,36px);scroll-snap-type:x mandatory}
   .bento::-webkit-scrollbar{display:none}
   .bento .tile{flex:none;width:clamp(150px,42vw,220px);scroll-snap-align:start;padding:14px}
-  .bento .tile.wide{width:clamp(250px,72vw,340px);grid-template-columns:56px minmax(0,1fr);gap:12px}
+  .bento .tile.wide{width:clamp(280px,80vw,360px);grid-template-columns:56px minmax(0,1fr);gap:12px}
   .tile.wide .thumb{width:56px;height:56px}
   .stat-v{font-size:32px;margin-top:8px}
   .rail{top:env(safe-area-inset-top,0px)}
   .layout{grid-template-columns:minmax(0,1fr);padding-bottom:calc(120px + env(safe-area-inset-bottom,0px))}
   .shelf-row{grid-auto-columns:clamp(120px,34vw,160px);margin-inline:calc(-1 * clamp(16px,2.6vw,36px));padding-inline:clamp(16px,2.6vw,36px);scroll-padding-inline:clamp(16px,2.6vw,36px)}
   .shelf-nav{display:none}
+  .hero-main{grid-template-columns:minmax(0,1fr);grid-template-areas:"f" "t" "c"}
+  .bento{align-items:flex-start}
+  .leaders{flex-wrap:nowrap;overflow:hidden}
+  .fan{padding:4px 0 14px;gap:14px}
+  .fan-card{max-width:104px;border-radius:12px}
+  .fan-card span{font-size:22px}
+  .news{grid-template-columns:auto minmax(0,1fr);padding:14px 16px;gap:4px 14px;margin-top:4px}
+  .news .n-ic{width:38px;height:38px;border-radius:12px}
+  .news .n-go{display:none}
+  .news strong{font-size:18px}
+  .sortbar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * clamp(16px,2.6vw,36px));padding-inline:clamp(16px,2.6vw,36px);scroll-padding-inline:clamp(16px,2.6vw,36px);mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 24px),transparent)}
+  .sortbar::-webkit-scrollbar{display:none}
+  .sort-chip{height:40px}
+  .ychart{padding:18px 14px 14px}
+  .yc-big{text-align:left}
+  .yc-big b{font-size:32px}
+  .yc-body{grid-template-columns:20px minmax(0,1fr)}
+  .yc-x{margin-left:26px}
+
   .shelf-h h3,.grid-h h3{font-size:22px}
 
   /* spodní panel filtrů */
@@ -592,6 +692,7 @@ footer p{margin:0}
   .n-opts.num{grid-template-columns:repeat(4,minmax(0,1fr))}
   .who-row{grid-template-columns:84px 1fr auto}
 }
+@media (max-width:400px){.lbl-l{display:none}.lbl-s{display:inline}}
 @media (max-width:350px){.grid{grid-template-columns:1fr}}
 @media (hover:none){.card:hover{transform:none;box-shadow:none}.card:active{transform:scale(.98)}}
 @media (prefers-reduced-motion: reduce){
@@ -633,6 +734,7 @@ footer p{margin:0}
   <symbol id="i-keyboard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 6h18v12H3zM7 10h.01M11 10h.01M15 10h.01M8 14h8"/></symbol>
   <symbol id="i-install" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></symbol>
   <symbol id="i-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6-6-6 6 6 6"/></symbol>
+  <symbol id="i-news" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h13v14H6a2 2 0 0 1-2-2V5Zm13 4h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5M8 16h3"/></symbol>
   <symbol id="i-cards" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M8 4h11v15H8zM5 7v13h11"/></symbol>
 </svg>
 
@@ -640,9 +742,9 @@ footer p{margin:0}
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#" id="brand" aria-label="Herní police, nahoru">
+    <a class="brand" href="#" id="brand" aria-label="Deskovky, nahoru">
       <span class="mark"><svg width="20" height="20"><use href="#i-die"/></svg></span>
-      <span><b>Herní police</b><small id="owner">@JakSeRodi</small></span>
+      <span><b>Deskovky</b><small id="owner">@JakSeRodi</small></span>
     </a>
     <div class="search-slot" id="slotTop">
       <label class="search" id="searchBox">
@@ -665,17 +767,20 @@ footer p{margin:0}
 <div class="wrap">
   <section class="hero" aria-label="Úvod">
     <div class="hero-main glass">
-      <div>
+      <div class="fan" id="fan" aria-label="Tři nejlépe hodnocené hry ze sbírky"></div>
+      <div class="hero-text">
         <div class="eyebrow" id="heroEyebrow"></div>
         <h1>Co si dnes <em>zahrajeme?</em></h1>
       </div>
       <div class="hero-cta">
-        <button class="btn gold night-btn" type="button"><svg width="19" height="19"><use href="#i-sparkle"/></svg>Naplánovat herní večer</button>
+        <button class="btn gold night-btn" type="button"><svg width="19" height="19"><use href="#i-sparkle"/></svg><span class="lbl-l">Naplánovat herní večer</span><span class="lbl-s">Naplánovat večer</span></button>
         <button class="btn roll-btn" type="button" title="Vylosovat hru (R)" aria-label="Vylosovat hru"><svg class="die" width="19" height="19"><use href="#i-die"/></svg><span class="lbl">Vylosovat</span></button>
       </div>
     </div>
     <div class="bento" id="bento"></div>
   </section>
+
+  <a class="news" id="news" hidden target="_blank" rel="noopener"></a>
 
   <div class="rail"><div class="quick" id="quick" role="toolbar" aria-label="Rychlé výběry"></div></div>
 
@@ -756,16 +861,16 @@ footer p{margin:0}
     <main id="main">
       <div class="toolbar">
         <div class="count" id="count" aria-live="polite"></div>
-        <label class="select"><span class="sr">Řazení</span><select id="sort"></select></label>
         <div class="seg" role="group" aria-label="Zobrazení">
           <button type="button" id="vGrid" aria-pressed="true" title="Mřížka (G)"><svg width="17" height="17"><use href="#i-grid"/></svg></button>
           <button type="button" id="vList" aria-pressed="false" title="Seznam (L)"><svg width="17" height="17"><use href="#i-list"/></svg></button>
         </div>
         <button class="icon-btn sm roll-btn m-only" type="button" aria-label="Vylosovat hru z výsledků"><svg class="die" width="18" height="18"><use href="#i-die"/></svg></button>
+        <div class="sortbar" id="sortbar" role="group" aria-label="Řazení"></div>
         <div class="active" id="active"></div>
       </div>
       <div class="shelves" id="shelves"></div>
-      <div class="grid-h" id="gridH" hidden><h3>Celá police</h3></div>
+      <div class="grid-h" id="gridH" hidden><h3>Celá sbírka</h3></div>
       <div class="list-head" id="listHead">
         <span></span>
         <button type="button" data-s="name">Hra</button>
@@ -782,7 +887,8 @@ footer p{margin:0}
 
 <footer>
   <div class="wrap">
-    <p id="foot">Herní police</p>
+    <p id="foot">Deskovky</p>
+    <label class="toggle foot-h" for="hapt" id="haptWrap" hidden><span>Vibrace při ovládání</span><span class="switch"><input type="checkbox" id="hapt"><span></span></span></label>
     <a class="bgg" href="https://boardgamegeek.com" target="_blank" rel="noopener">Powered by <b>BGG</b></a>
   </div>
 </footer>
@@ -904,7 +1010,25 @@ const days=d=>d?Math.max(0,Math.floor((TODAY-new Date(d+"T12:00:00").getTime())/
 function rel(d){const n=days(d);if(n===Infinity)return"";if(n<1)return"dnes";if(n<2)return"včera";if(n<7)return`před ${n} dny`;if(n<14)return"před týdnem";if(n<31)return`před ${Math.floor(n/7)} týdny`;const m=Math.floor(n/30.4);if(m<2)return"před měsícem";if(m<12)return`před ${m} měsíci`;const y=Math.floor(n/365);return y<2?"před rokem":`před ${y} lety`}
 function relShort(d){const n=days(d);if(n===Infinity)return"";if(n<1)return"dnes";if(n<2)return"včera";if(n<7)return`${n} d`;if(n<31)return`${Math.floor(n/7)} týd.`;const m=Math.floor(n/30.4);if(m<12)return`${m} měs.`;return`${Math.floor(n/365)} r.`}
 const dateCz=s=>{const d=new Date(s);return isNaN(d)?"":d.toLocaleDateString("cs-CZ",{day:"numeric",month:"numeric",year:"numeric"})};
-const haptic=p=>{if(navigator.vibrate)try{navigator.vibrate(p)}catch{}};
+/* Haptika: Android (Vibration API) přesné vzory, iPhone s iOS 18+ systémový „tick“ přes nativní přepínač */
+const HAPT=(()=>{
+  const canVib=typeof navigator.vibrate==="function";
+  const ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+  let lbl=null;
+  if(!canVib&&ios){lbl=document.createElement("label");lbl.setAttribute("aria-hidden","true");lbl.style.cssText="position:fixed;left:-200px;top:0;width:1px;height:1px;overflow:hidden;opacity:.01;pointer-events:none";
+    const i=document.createElement("input");i.type="checkbox";i.setAttribute("switch","");i.tabIndex=-1;lbl.appendChild(i);document.body.appendChild(lbl);}
+  let on=(()=>{try{return localStorage.getItem("hp-haptics")!=="0"}catch{return true}})();
+  // délky v ms: krátké ostré pulzy působí na kvalitních lineárních motorech jako „cvaknutí“
+  const P={tick:[5],select:[9],tap:[12],nav:[7],snap:[4,32,7],confirm:[9,48,16],close:[14],warn:[22,70,22],
+    success:[10,55,10,55,26],roll:[6,26,5,30,7,38,8,52,10,74,26]};
+  const T={tick:[0],select:[0],tap:[0],nav:[0],snap:[0,45],confirm:[0,70],close:[0],warn:[0,120],success:[0,90,190],roll:[0,55,120,200,310,480]};
+  let last=0;
+  function play(k){if(!on)return;const now=performance.now();if(k==="tick"&&now-last<35)return;last=now;
+    if(canVib){try{navigator.vibrate(P[k]||P.tap)}catch{}}
+    else if(lbl){(T[k]||[0]).forEach(t=>t?setTimeout(()=>lbl.click(),t):lbl.click());}}
+  return{play,supported:canVib||!!lbl,get on(){return on},set(v){on=v;try{localStorage.setItem("hp-haptics",v?"1":"0")}catch{}}};
+})();
+const haptic=k=>HAPT.play(k);
 const ic=(id,s=16)=>`<svg width="${s}" height="${s}" aria-hidden="true"><use href="#${id}"/></svg>`;
 
 /* štítky, které patří mezi „Styl hry“ i když je BGG vede jako kategorii */
@@ -941,16 +1065,16 @@ function matches(g,skip){
 const fitScore=g=>{const n=S.players;if(!n)return 0;const k=Math.min(n,8);return g.best.includes(k)?2:g.rec.includes(k)?1:0};
 const SORTS={
   fit:{l:"Doporučené",f:(a,b)=>fitScore(b)-fitScore(a)||(b.wp-a.wp)||b.r-a.r},
-  rating:{l:"Nejlépe hodnocené",f:(a,b)=>b.r-a.r},
+  rating:{l:"Hodnocení",f:(a,b)=>b.r-a.r},
   recent:{l:"Naposledy hrané",f:(a,b)=>(b.lp||"").localeCompare(a.lp||"")||b.pl-a.pl},
   longest:{l:"Nejdéle nehrané",f:(a,b)=>(a.pl?0:1)-(b.pl?0:1)||(a.lp||"9").localeCompare(b.lp||"9")},
   plays:{l:"Nejhranější",f:(a,b)=>b.pl-a.pl||b.r-a.r},
-  added:{l:"Naposledy přidané",f:(a,b)=>(b.ci||0)-(a.ci||0)},
-  new:{l:"Nejnovější vydání",f:(a,b)=>b.y-a.y||b.r-a.r},
+  added:{l:"Nově přidané",f:(a,b)=>(b.ci||0)-(a.ci||0)},
+  new:{l:"Nejnovější",f:(a,b)=>b.y-a.y||b.r-a.r},
   light:{l:"Nejlehčí",f:(a,b)=>(a.w||9)-(b.w||9)},
-  heavy:{l:"Nejnáročnější",f:(a,b)=>b.w-a.w},
+  heavy:{l:"Nejtěžší",f:(a,b)=>b.w-a.w},
   short:{l:"Nejkratší",f:(a,b)=>a.tt-b.tt||a.t[0]-b.t[0]},
-  name:{l:"Abecedně",f:(a,b)=>a.n.localeCompare(b.n,"cs")},
+  name:{l:"A–Z",f:(a,b)=>a.n.localeCompare(b.n,"cs")},
 };
 
 /* předvolby */
@@ -1040,8 +1164,8 @@ function render(animate){
   const ids=next.map(g=>g.id).join(",");
   const grid=$("grid");
   const apply=()=>{
-    LIST=next;
-    if(!next.length) grid.innerHTML=emptyHTML();
+    const prevLen=LIST.length;LIST=next;
+    if(!next.length){grid.innerHTML=emptyHTML();if(prevLen&&!first)haptic("warn");}
     else grid.replaceChildren(...next.map((g,i)=>{
       let el=CARD.get(g.id);if(!el){el=mkCard(g);CARD.set(g.id,el);}
       if(first){el.classList.add("enter");el.style.setProperty("--i",Math.min(i,16));el.addEventListener("animationend",()=>el.classList.remove("enter"),{once:true});}
@@ -1101,7 +1225,7 @@ function updateUI(){
   $("listHead").classList.toggle("on",S.view==="list"&&!mqMobile.matches);
   $("vGrid").setAttribute("aria-pressed",S.view==="grid");$("vList").setAttribute("aria-pressed",S.view==="list");
   $("listHead").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.s===S.sort));
-  $("sort").value=S.sort;
+  $("sortbar").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.s===S.sort));
   if(q.value!==S.qRaw&&document.activeElement!==q){q.value=S.qRaw;}
   $("qclear").hidden=!q.value;$("keys-hint").hidden=!!q.value;
   const disc=discovery();
@@ -1172,7 +1296,7 @@ function renderHero(){
     <div class="tile glass"><div class="stat-k">Zapsané partie</div><div class="stat-v">${plays}</div><div class="stat-s">${playedYear} ${plural(playedYear,"hra hraná","hry hrané","her hraných")} letos</div></div>
     ${last?`<button type="button" class="tile wide glass" data-open="${last.id}" data-list="recent">${thumbHTML(last)}<div><div class="stat-k">Naposledy na stole · ${esc(rel(last.lp))}</div><strong>${esc(last.n)}</strong>
       ${leaders.length?`<div class="leaders">${leaders.map((x,i)=>`<span class="leader" title="${esc(x.n)}: ${x.w} výher"><i>${i+1}</i>${esc(x.n)} <b>${x.w}×</b></span>`).join("")}</div>`:""}</div></button>`:""}`;
-  $("foot").innerHTML=META.sample?"Herní police · ukázková data pro náhled":`Herní police · sbírka @${esc(META.user)} z BoardGameGeek · aktualizace každé ráno`;
+  $("foot").innerHTML=META.sample?"Deskovky · ukázková data pro náhled":`Deskovky · sbírka @${esc(META.user)} z BoardGameGeek · aktualizace každé ráno`;
 }
 const SHELVES=[
   {k:"recent",t:"Naposledy na stole",p:"Co jste hráli v poslední době",get:()=>GAMES.filter(g=>g.lp).sort(SORTS.recent.f).slice(0,14),sub:g=>`${ic("i-history",12)}${rel(g.lp)}`},
@@ -1184,8 +1308,74 @@ const SHELF_LISTS={};
 function renderShelves(){
   $("shelves").innerHTML=SHELVES.map(s=>{const L=s.get();if(L.length<3)return"";SHELF_LISTS[s.k]=L;
     return `<section aria-label="${esc(s.t)}"><div class="shelf-h"><div><h3>${esc(s.t)}</h3><p>${esc(s.p)}</p></div><div class="shelf-nav"><button class="icon-btn sm" type="button" data-scroll="-1" aria-label="Posunout zpět">${ic("i-chev-l")}</button><button class="icon-btn sm" type="button" data-scroll="1" aria-label="Posunout dál">${ic("i-chev-r")}</button></div></div>
-      <div class="shelf-row">${L.map(g=>`<button type="button" class="mini-card" data-open="${g.id}" data-list="${s.k}">${thumbHTML(g)}<strong>${esc(g.n)}</strong><small>${s.sub(g)}</small></button>`).join("")}</div></section>`}).join("");
+      <div class="shelf-row">${L.map(g=>`<button type="button" class="mini-card" data-open="${g.id}" data-list="${s.k}">${thumbHTML(g)}<strong>${esc(g.n)}</strong><small>${s.sub(g)}</small></button>`).join("")}</div></section>`}).join("")+yearChart();
 }
+
+
+/* =================== vějíř, novinka, graf =================== */
+function renderFan(){
+  const withImg=GAMES.filter(g=>g.cov||g.th||g.img);
+  const L=[...(withImg.length>=3?withImg:GAMES)].sort(SORTS.rating.f).slice(0,3);
+  SHELF_LISTS.fan=L;
+  $("fan").innerHTML=L.map((g,i)=>{const src=g.cov||g.th||g.img;return `<button type="button" class="fan-card" style="--i:${i};--c:${g.col}" data-open="${g.id}" data-list="fan" aria-label="${esc(g.n)}, hodnocení ${nf1(g.r)}">${src?`<img src="${esc(src)}" alt="" decoding="async">`:`<span>${esc(initials(g.n))}</span>`}<b class="rk">${nf1(g.r)}</b></button>`}).join("");
+}
+async function loadNews(){
+  let n=null;
+  if(META.sample) n={title:"Tady se každý týden objeví nejdůležitější zpráva ze světa deskovek",source:"ukázka v náhledu",date:new Date().toISOString(),url:""};
+  else try{const r=await fetch("data/news.json",{cache:"no-cache"});if(r.ok)n=await r.json();}catch{}
+  if(!n||!n.title||days((n.date||"").slice(0,10))>9)return;
+  const el=$("news");el.hidden=false;
+  if(n.url)el.href=n.url;else el.removeAttribute("href");
+  el.innerHTML=`<span class="n-ic">${ic("i-news",20)}</span><span class="eyebrow">Ze světa deskovek · tento týden</span><strong>${esc(n.titleCz||n.title)}</strong><span class="news-src">Zdroj: ${esc(n.source)}${n.date?` · ${rel(n.date.slice(0,10))}`:""}${!n.titleCz&&!META.sample?" · anglicky":""}</span>${n.url?`<span class="n-go">${ic("i-ext",18)}</span>`:""}`;
+  el.addEventListener("click",()=>haptic("tap"));
+}
+let YBINS=[];
+function yearChart(){
+  const gs=GAMES.filter(g=>g.y);if(gs.length<5)return"";
+  const ys=gs.map(g=>g.y),maxY=Math.max(...ys),minY=Math.min(...ys);
+  const Y0=Math.max(minY,maxY-34);
+  YBINS=[];
+  const olds=gs.filter(g=>g.y<Y0);
+  if(olds.length)YBINS.push({l:"dřív",tip:`Před rokem ${Y0}`,lo:minY,hi:Y0-1,g:olds});
+  for(let y=Y0;y<=maxY;y++)YBINS.push({l:String(y),tip:String(y),lo:y,hi:y,g:gs.filter(g=>g.y===y)});
+  const max=Math.max(...YBINS.map(b=>b.g.length));
+  const step=max<=5?1:max<=10?2:max<=25?5:10,top=Math.ceil(max/step)*step;
+  const PIV=2010,after=gs.filter(g=>g.y>=PIV).length,pct=Math.round(after/gs.length*100);
+  const oldest=[...gs].sort((a,b)=>a.y-b.y)[0],newest=[...gs].sort((a,b)=>b.y-a.y)[0];
+  const peak=YBINS.filter(b=>b.lo===b.hi).sort((a,b)=>b.g.length-a.g.length)[0];
+  const n=YBINS.length,pi=YBINS.findIndex(b=>b.lo===PIV);
+  const ticks=[];for(let v=0;v<=top;v+=step)ticks.push(v);
+  const showX=(b,i)=>i===0||i===n-1||(b.lo===b.hi&&b.lo%5===0&&i>1&&i<n-2);
+  return `<section class="ychart glass" aria-labelledby="ych">
+    <div class="yc-head"><div><h3 id="ych">Kdy vyšly naše hry</h3><p>${gs.length} ${her(gs.length)} podle roku vydání. Nejstarší je ${esc(oldest.n)} (${oldest.y}), nejnovější ${esc(newest.n)} (${newest.y})${peak&&peak.g.length>1?`, nejvíc her je z roku ${peak.lo} (${peak.g.length})`:""}. Klepnutím na sloupec zobrazíte hry z daného roku.</p></div>
+      <div class="yc-big"><b>${pct} %</b><span>vyšlo v roce ${PIV} nebo později</span></div></div>
+    <div class="yc-legend" aria-hidden="true"><span><i class="old"></i>do roku ${PIV-1}</span><span><i></i>od roku ${PIV}</span></div>
+    <div class="yc-body">
+      <div class="yc-y" aria-hidden="true">${ticks.map(v=>`<span style="bottom:${v/top*100}%">${v}</span>`).join("")}</div>
+      <div class="yc-wrap" id="ycWrap">
+        <div class="yc-grid" aria-hidden="true">${ticks.map(v=>`<i class="${v?"":"base"}" style="bottom:${v/top*100}%"></i>`).join("")}</div>
+        <div class="yc-plot" style="--n:${n}">${YBINS.map((b,i)=>`<button type="button" class="yb${b.lo>=PIV?" new":""}${b.g.length?"":" zero"}" data-yb="${i}" style="--h:${b.g.length/top*100}%;--k:${i}" aria-label="${esc(b.tip)}: ${b.g.length} ${her(b.g.length)}" ${b.g.length?"":'tabindex="-1" aria-hidden="true"'}><i></i></button>`).join("")}</div>
+        ${pi>0?`<div class="yc-pivot" style="left:calc(${pi} / ${n} * 100% - 1px)"><b>${PIV}</b></div>`:""}
+        <div class="yc-tip" id="ytip" hidden></div>
+      </div>
+    </div>
+    <div class="yc-x" style="--n:${n}" aria-hidden="true">${YBINS.map((b,i)=>`<span>${showX(b,i)?b.l:""}</span>`).join("")}</div>
+    <table class="sr"><caption>Počet her podle roku vydání</caption><tr><th>Rok</th><th>Počet her</th></tr>${YBINS.filter(b=>b.g.length).map(b=>`<tr><td>${esc(b.tip)}</td><td>${b.g.length}</td></tr>`).join("")}</table>
+  </section>`;
+}
+function showTip(btn){
+  const tip=$("ytip");if(!tip||!btn)return;const b=YBINS[+btn.dataset.yb];if(!b||!b.g.length){tip.hidden=true;return;}
+  const names=[...b.g].sort(SORTS.rating.f).slice(0,3).map(g=>g.n);
+  tip.innerHTML=`<b>${esc(b.tip)}</b> · ${b.g.length} ${her(b.g.length)}<small>${esc(names.join(", "))}${b.g.length>3?"…":""}</small>`;
+  const wrap=$("ycWrap").getBoundingClientRect(),r=btn.getBoundingClientRect(),bar=btn.querySelector("i").getBoundingClientRect();
+  tip.hidden=false;const w=tip.offsetWidth;let x=r.left+r.width/2-wrap.left;x=Math.max(w/2-26,Math.min(wrap.width-w/2,x));
+  tip.style.left=x+"px";tip.style.top=Math.max(-tip.offsetHeight-6,bar.top-wrap.top-tip.offsetHeight-10)+"px";
+}
+document.addEventListener("pointerover",e=>{const b=e.target.closest?.(".yb");if(b&&e.pointerType!=="touch")showTip(b);});
+document.addEventListener("pointerout",e=>{if(e.target.closest?.(".yb")&&!e.relatedTarget?.closest?.(".yb")){const t=$("ytip");if(t)t.hidden=true;}});
+document.addEventListener("focusin",e=>{const b=e.target.closest?.(".yb");if(b)showTip(b);});
+document.addEventListener("click",e=>{const b=e.target.closest(".yb");if(!b)return;const bin=YBINS[+b.dataset.yb];if(!bin||!bin.g.length)return;
+  haptic("select");S.year=[Math.max(YMIN,bin.lo),Math.min(YMAX,bin.hi)];schedule();scrollToGrid();toast(`${bin.tip}: ${bin.g.length} ${her(bin.g.length)}`);});
 
 /* =================== překryvné vrstvy a tlačítko Zpět =================== */
 let HIST=false;try{HIST=window.top===window}catch{}
@@ -1232,10 +1422,11 @@ function detailHTML(g){
         </div>
         ${g.who.length?`<div><h4 class="sec-h">${ic("i-trophy",14)}Kdo vyhrává</h4><div class="history"><div class="who">${g.who.slice(0,5).map(w=>`<div class="who-row"><span>${esc(w.n)}</span><span class="bar"><u style="width:${w.p/maxP*100}%"></u><i style="width:${w.w/maxP*100}%"></i></span><b>${w.w} z ${w.p}</b></div>`).join("")}</div></div></div>`:""}
         ${g.exp.length?`<div><h4 class="sec-h">${ic("i-puzzle",14)}Máme rozšíření (${g.exp.length})</h4><div class="exp-row">${g.exp.map(x=>`<div class="exp">${thumbHTML({...x,col:g.col,cov:"",th:x.img})}<span>${esc(x.n.replace(g.n+": ","").replace(g.n+" – ",""))}</span></div>`).join("")}</div></div>`:""}
-        ${g.d?`<div><h4 class="sec-h">O hře</h4><p class="desc clamp" id="dDesc" lang="en">${esc(g.d)}</p>${g.d.length>300?`<button class="linkbtn" type="button" id="dMore">Číst dál</button>`:""}</div>`:""}
+        ${(g.dcz||g.d)?`<div><h4 class="sec-h">O hře${g.dcz?`<span class="mt">strojový překlad</span>`:`<span class="mt">anglicky z BGG</span>`}</h4><p class="desc clamp" id="dDesc" lang="${g.dcz?"cs":"en"}">${esc(g.dcz||g.d)}</p>
+          <div class="desc-act">${(g.dcz||g.d).length>300?`<button class="linkbtn" type="button" id="dMore">Číst dál</button>`:""}${!g.dcz&&g.d?`<a class="linkbtn" href="https://translate.google.com/?sl=en&tl=cs&op=translate&text=${encodeURIComponent(g.d.slice(0,1800))}" target="_blank" rel="noopener">Přeložit do češtiny ${ic("i-ext",12)}</a>`:""}</div></div>`:""}
         ${g.des.length?`<div><h4 class="sec-h">Autor</h4><div class="tagrow">${g.des.map(d=>`<button class="chip" type="button" data-fdes="${esc(d)}">${esc(d)}</button>`).join("")}</div></div>`:""}
         ${g.m.length?`<div><h4 class="sec-h">Mechaniky</h4><div class="tagrow">${g.m.slice(0,10).map(d=>`<button class="chip" type="button" data-fmech="${esc(d)}">${esc(d)}</button>`).join("")}</div></div>`:""}
-        <div class="d-actions"><a class="btn gold" href="https://boardgamegeek.com/boardgame/${g.id}" target="_blank" rel="noopener">Otevřít na BGG ${ic("i-ext",15)}</a></div>
+        <div class="d-actions"><a class="btn gold" href="https://boardgamegeek.com/boardgame/${g.id}" target="_blank" rel="noopener">Otevřít na BGG ${ic("i-ext",15)}</a><a class="btn" href="https://www.google.com/search?q=${encodeURIComponent("site:zatrolene-hry.cz "+g.n)}" target="_blank" rel="noopener">Hledat na Zatrolených hrách ${ic("i-ext",15)}</a></div>
         <div><h4 class="sec-h">Podobné na naší polici</h4><div class="sims">${similar(g).map(x=>`<button type="button" class="sim" data-sim="${x.id}">${thumbHTML(x)}<strong>${esc(x.n)}</strong><small>${pTxt(x)} · ${tTxt(x)}</small></button>`).join("")}</div></div>
       </div></div>
     </div></div>`;
@@ -1253,7 +1444,7 @@ function openDetail(id,list){
   const L=list&&list.length?list:(LIST.includes(g)?LIST:[g]);
   DET={list:L,i:Math.max(0,L.indexOf(g))};
   fillDetail(g);
-  if(!dlg.open){dlg.showModal();ovOpen("detail",()=>{closeDialog(dlg);document.documentElement.style.removeProperty("--amb");});}
+  if(!dlg.open){haptic("tap");dlg.showModal();ovOpen("detail",()=>{closeDialog(dlg);document.documentElement.style.removeProperty("--amb");});}
   const sc=mqMobile.matches?dlg.querySelector(".d-wrap"):$("dScroll");if(sc)sc.scrollTop=0;
 }
 function navDetail(dir){
@@ -1263,7 +1454,7 @@ function navDetail(dir){
   const wrap=dlg.querySelector(".d-wrap");
   const swap=()=>{fillDetail(g);const w=dlg.querySelector(".d-wrap");if(!REDUCED)w.animate([{opacity:0,transform:`translateX(${dir*36}px)`},{opacity:1,transform:"none"}],{duration:260,easing:"cubic-bezier(.2,.85,.2,1)"});};
   if(REDUCED||!wrap)swap();else wrap.animate([{opacity:1,transform:"none"},{opacity:0,transform:`translateX(${-dir*36}px)`}],{duration:130,easing:"ease-in"}).finished.then(swap);
-  haptic(8);
+  haptic("nav");
 }
 function bindDetailGestures(){
   if(!mqMobile.matches)return;
@@ -1274,14 +1465,15 @@ function bindDetailGestures(){
     if(!mode){if(Math.abs(ddx)>12&&Math.abs(ddx)>Math.abs(ddy)*1.3&&e.currentTarget===cover)mode="x";else if(ddy>8&&wrap.scrollTop<=0&&Math.abs(ddy)>Math.abs(ddx))mode="y";else if(Math.abs(ddy)>8||Math.abs(ddx)>8)mode="none";}
     if(mode==="y"){e.preventDefault();dy=Math.max(0,ddy);dlg.classList.add("dragging");dlg.style.transform=`translateY(${dy}px)`;}
     if(mode==="x"){e.preventDefault();dx=ddx;const im=cover.querySelector("img,.gen");if(im)im.style.transform=`translateX(${dx*.6}px) rotate(${dx*.02}deg)`;}};
-  const end=()=>{if(mode==="y"){dlg.classList.remove("dragging");if(dy>110)ovClose("detail");else dlg.style.transform="";}
+  const end=()=>{if(mode==="y"){dlg.classList.remove("dragging");if(dy>110){haptic("close");ovClose("detail");}else dlg.style.transform="";}
     if(mode==="x"){const im=cover.querySelector("img,.gen");if(im)im.style.transform="";if(Math.abs(dx)>60)navDetail(dx<0?1:-1);}mode=null;};
   [wrap,cover].forEach(el=>{el.addEventListener("touchstart",start,{passive:true});el.addEventListener("touchmove",move,{passive:false});el.addEventListener("touchend",end);el.addEventListener("touchcancel",end);});
 }
 dlg.addEventListener("cancel",e=>{e.preventDefault();ovClose("detail");});
 dlg.addEventListener("click",e=>{
-  if(e.target===dlg||e.target.closest("[data-close]"))return ovClose("detail");
+  if(e.target===dlg||e.target.closest("[data-close]")){haptic("close");return ovClose("detail");}
   const nv=e.target.closest("[data-nav]");if(nv&&!nv.disabled)return navDetail(+nv.dataset.nav);
+  if(e.target.closest("a.btn,.linkbtn"))haptic("tap");
   const s=e.target.closest("[data-sim]");if(s){const g=BYID.get(+s.dataset.sim);DET={list:[g,...similar(g)],i:0};fillDetail(g);(mqMobile.matches?dlg.querySelector(".d-wrap"):$("dScroll")).scrollTop=0;return;}
   const fd=e.target.closest("[data-fdes],[data-fmech]");
   if(fd){const k=fd.dataset.fdes?"des":"mech";const v=fd.dataset.fdes||fd.dataset.fmech;S=Object.assign(DEF(),{sort:S.sort,view:S.view});S[k].add(v);$("adv").open=true;ovClose("detail");schedule();toast(`Filtr: ${v}`);scrollToGrid();return;}
@@ -1356,19 +1548,19 @@ function openNight(){
   W.step=0;renderNight();
   if(!nightD.open){nightD.showModal();ovOpen("night",()=>closeDialog(nightD));}
 }
-function nightNext(){W.step++;if(W.step===3){rankNight();store.set("hp-night",JSON.stringify({players:W.players,time:W.time,mood:W.mood}));haptic([10,40,10,40,10]);}renderNight();}
+function nightNext(){W.step++;if(W.step===3){rankNight();store.set("hp-night",JSON.stringify({players:W.players,time:W.time,mood:W.mood}));setTimeout(()=>haptic("success"),REDUCED?0:260);}renderNight();}
 nightD.addEventListener("cancel",e=>{e.preventDefault();ovClose("night");});
 nightD.addEventListener("click",e=>{
   const t=e.target;
-  if(t===nightD||t.closest("[data-nclose]"))return ovClose("night");
-  if(t.closest("[data-nback]")){W.step--;W._back=true;return renderNight();}
-  const p=t.closest("[data-np]");if(p){W.players=+p.dataset.np;haptic(8);return setTimeout(nightNext,REDUCED?0:140);}
-  const tt=t.closest("[data-nt]");if(tt){W.time=+tt.dataset.nt;haptic(8);return setTimeout(nightNext,REDUCED?0:140);}
-  const m=t.closest("[data-nm]");if(m){W.mood=m.dataset.nm;haptic(8);return setTimeout(nightNext,REDUCED?0:140);}
+  if(t===nightD||t.closest("[data-nclose]")){haptic("close");return ovClose("night");}
+  if(t.closest("[data-nback]")){haptic("nav");W.step--;W._back=true;return renderNight();}
+  const p=t.closest("[data-np]");if(p){W.players=+p.dataset.np;haptic("select");return setTimeout(nightNext,REDUCED?0:140);}
+  const tt=t.closest("[data-nt]");if(tt){W.time=+tt.dataset.nt;haptic("select");return setTimeout(nightNext,REDUCED?0:140);}
+  const m=t.closest("[data-nm]");if(m){W.mood=m.dataset.nm;haptic("select");return setTimeout(nightNext,REDUCED?0:140);}
   const go=t.closest("[data-ngo]");if(go){W.step=+go.dataset.ngo;W._back=true;return renderNight();}
-  if(t.closest("[data-nmore]")){W.page=(W.page+1)%Math.ceil(W.ranked.length/3);haptic(10);return renderNight();}
+  if(t.closest("[data-nmore]")){W.page=(W.page+1)%Math.ceil(W.ranked.length/3);haptic("tap");setTimeout(()=>haptic("success"),REDUCED?0:200);return renderNight();}
   const pk=t.closest("[data-npick]");if(pk){const L=W.ranked.map(r=>r.g);return openDetail(pk.dataset.npick,L);}
-  if(t.closest("[data-nrand]")){const b=t.closest("[data-nrand]");b.classList.remove("rolling");void b.offsetWidth;b.classList.add("rolling");haptic([12,40,12]);
+  if(t.closest("[data-nrand]")){const b=t.closest("[data-nrand]");b.classList.remove("rolling");void b.offsetWidth;b.classList.add("rolling");haptic("roll");
     const pick=W.ranked[Math.floor(Math.random()*W.ranked.length)].g;setTimeout(()=>openDetail(pick.id,W.ranked.map(r=>r.g)),REDUCED?0:700);return;}
   if(t.closest("[data-napply]")){
     S=Object.assign(DEF(),{sort:"fit",view:S.view});S.players=W.players;
@@ -1382,7 +1574,7 @@ nightD.addEventListener("click",e=>{
 function roll(){
   const pool=LIST.length?LIST:GAMES;if(!pool.length)return;
   document.querySelectorAll(".roll-btn").forEach(b=>{b.classList.remove("rolling");void b.offsetWidth;b.classList.add("rolling");});
-  haptic([12,40,12]);
+  haptic("roll");
   const pick=pool[Math.floor(Math.random()*pool.length)];
   setTimeout(()=>{document.querySelectorAll(".roll-btn").forEach(b=>b.classList.remove("rolling"));openDetail(pick.id,pool);},REDUCED?0:700);
 }
@@ -1413,7 +1605,7 @@ function readURL(){
   if(SORTS[p.get("razeni")])S.sort=p.get("razeni");
 }
 function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2400);}
-function copyLink(url,msg){const fb=()=>toast("Odkaz: "+url);try{navigator.clipboard.writeText(url).then(()=>{toast(msg);haptic(10)},fb)}catch{fb()}}
+function copyLink(url,msg){const fb=()=>toast("Odkaz: "+url);try{navigator.clipboard.writeText(url).then(()=>{toast(msg);haptic("confirm")},fb)}catch{fb()}}
 $("share").addEventListener("click",()=>{const s=stateToQuery();copyLink(pageURL(s),s?"Odkaz na tento výběr je zkopírovaný":"Odkaz na polici je zkopírovaný");});
 
 /* =================== hledání =================== */
@@ -1456,35 +1648,35 @@ function buildStatic(){
   $("weightChips").innerHTML=WEIGHT_CH.map(t=>`<button type="button" class="schip">${t.l}<small>${t.s}</small></button>`).join("");
   $("ratingChips").innerHTML=RATING_CH.map(t=>`<button type="button" class="schip">${t.l}</button>`).join("");
   $("ageChips").innerHTML=AGE_CH.map(t=>`<button type="button" class="schip">${t.l}</button>`).join("");
-  $("sort").innerHTML=Object.entries(SORTS).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join("");
+  $("sortbar").innerHTML=`<span class="sort-lab">Řadit</span>`+Object.entries(SORTS).map(([k,v])=>`<button type="button" class="sort-chip" data-s="${k}" aria-pressed="false">${v.l}</button>`).join("");
   $("quick").innerHTML=QUICK.filter(x=>x.st?STYLES.includes(x.st):(!x.need||x.need())).map(x=>`<button type="button" class="qchip" data-k="${x.k}" aria-pressed="false">${ic(x.i,15)}${x.l}</button>`).join("");
 }
-$("seats").addEventListener("click",e=>{const b=e.target.closest(".seat");if(!b)return;const n=+b.dataset.n;S.players=S.players===n?0:n;if(!S.players)S.rec=false;haptic(6);schedule();});
-$("recOnly").addEventListener("change",e=>{S.rec=e.target.checked;schedule();});
-const chipSet=(id,arr,apply)=>$(id).addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const i=[...$(id).children].indexOf(b);apply(arr[i]);haptic(6);schedule();});
+$("seats").addEventListener("click",e=>{const b=e.target.closest(".seat");if(!b)return;const n=+b.dataset.n;S.players=S.players===n?0:n;if(!S.players)S.rec=false;haptic("tick");schedule();});
+$("recOnly").addEventListener("change",e=>{S.rec=e.target.checked;haptic("tick");schedule();});
+const chipSet=(id,arr,apply)=>$(id).addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const i=[...$(id).children].indexOf(b);apply(arr[i]);haptic("tick");schedule();});
 chipSet("timeChips",TIME_CH,t=>S.time=eq(S.time,t.r)?[0,240]:[...t.r]);
 chipSet("weightChips",WEIGHT_CH,t=>S.weight=eq(S.weight,t.r)?[1,5]:[...t.r]);
 chipSet("ratingChips",RATING_CH,t=>S.rmin=t.v);
 chipSet("ageChips",AGE_CH,t=>S.age=t.v);
 document.querySelectorAll("[data-refine]").forEach(b=>b.addEventListener("click",()=>{const box=document.querySelector(`[data-box="${b.dataset.refine}"]`);box.hidden=!box.hidden;b.setAttribute("aria-expanded",!box.hidden);}));
-const facetClick=(host,key)=>$(host).addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b||b.disabled)return;const v=b.dataset.v;S[key].has(v)?S[key].delete(v):S[key].add(v);haptic(6);schedule();});
+const facetClick=(host,key)=>$(host).addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b||b.disabled)return;const v=b.dataset.v;S[key].has(v)?S[key].delete(v):S[key].add(v);haptic("tick");schedule();});
 facetClick("styleChips","styles");facetClick("themeChips","themes");facetClick("desChips","des");facetClick("mechChips","mech");
 $("moreStyles").addEventListener("click",()=>{open.styles=!open.styles;renderFacets();});
 $("moreThemes").addEventListener("click",()=>{open.themes=!open.themes;renderFacets();});
 $("desSearch").addEventListener("input",renderFacets);$("mechSearch").addEventListener("input",renderFacets);
 $("adv").addEventListener("toggle",renderFacets);
-[["t-wp","wp"],["t-long","long"],["t-never","never"],["t-cz","cz"]].forEach(([id,k])=>$(id).addEventListener("change",e=>{S[k]=e.target.checked;if(k==="long"&&S.long)S.never=false;if(k==="never"&&S.never)S.long=false;schedule();}));
-$("sort").addEventListener("change",e=>{S.sort=e.target.value;schedule();});
+[["t-wp","wp"],["t-long","long"],["t-never","never"],["t-cz","cz"]].forEach(([id,k])=>$(id).addEventListener("change",e=>{S[k]=e.target.checked;haptic("tick");if(k==="long"&&S.long)S.never=false;if(k==="never"&&S.never)S.long=false;schedule();}));
+$("sortbar").addEventListener("click",e=>{const b=e.target.closest("[data-s]");if(!b||S.sort===b.dataset.s)return;S.sort=b.dataset.s;haptic("tick");schedule();b.scrollIntoView({block:"nearest",inline:"center",behavior:REDUCED?"auto":"smooth"});});
 $("listHead").addEventListener("click",e=>{const b=e.target.closest("button");if(b){S.sort=b.dataset.s;schedule();}});
 $("vGrid").addEventListener("click",()=>{S.view="grid";store.set("hp-view","grid");render(false);});
 $("vList").addEventListener("click",()=>{S.view="list";store.set("hp-view","list");render(false);});
-$("reset").addEventListener("click",resetAll);$("sheetReset").addEventListener("click",resetAll);
+$("reset").addEventListener("click",()=>{haptic("confirm");resetAll();});$("sheetReset").addEventListener("click",()=>{haptic("confirm");resetAll();});
 $("active").addEventListener("click",e=>{if(e.target.closest("[data-reset]"))return resetAll();const b=e.target.closest("button[data-k]");if(!b)return;$("active")._act[+b.dataset.k][1]();schedule();});
 $("quick").addEventListener("click",e=>{const b=e.target.closest(".qchip");if(!b)return;const x=QUICK.find(k=>k.k===b.dataset.k);
   if(x.st){S.styles.has(x.st)?S.styles.delete(x.st):S.styles.add(x.st);}else x.set(!x.on());
-  if(!S.players)S.rec=false;if(S.long&&S.never)S.never=false;haptic(6);schedule();});
+  if(!S.players)S.rec=false;if(S.long&&S.never)S.never=false;haptic("tick");schedule();});
 $("grid").addEventListener("click",e=>{
-  if(e.target.closest("[data-reset]"))return resetAll();
+  if(e.target.closest("[data-reset]")){haptic("confirm");return resetAll();}
   const dr=e.target.closest("[data-drop]");if(dr){activeList()[+dr.dataset.drop][1]();return schedule();}
   const c=e.target.closest(".card");if(c)openDetail(c.dataset.id);});
 $("grid").addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList?.contains("card")){e.preventDefault();openDetail(e.target.dataset.id);}});
@@ -1493,7 +1685,7 @@ document.addEventListener("click",e=>{
   const sc=e.target.closest("[data-scroll]");if(sc){const row=sc.closest("section").querySelector(".shelf-row");row.scrollBy({left:+sc.dataset.scroll*row.clientWidth*.8,behavior:REDUCED?"auto":"smooth"});}
 });
 document.querySelectorAll(".roll-btn").forEach(b=>b.addEventListener("click",roll));
-document.querySelectorAll(".night-btn").forEach(b=>b.addEventListener("click",openNight));
+document.querySelectorAll(".night-btn").forEach(b=>b.addEventListener("click",()=>{haptic("tap");openNight();}));
 $("brand").addEventListener("click",e=>{e.preventDefault();window.scrollTo({top:0,behavior:REDUCED?"auto":"smooth"});});
 
 /* vzhled */
@@ -1501,7 +1693,7 @@ function applyTheme(t){if(t)document.documentElement.setAttribute("data-theme",t
 applyTheme(store.get("hp-theme"));
 $("theme").addEventListener("click",()=>{
   const cur=document.documentElement.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");
-  const nt=cur==="light"?"dark":"light";
+  const nt=cur==="light"?"dark":"light";haptic("tick");
   const go=()=>{applyTheme(nt);store.set("hp-theme",nt);document.querySelectorAll('meta[name="theme-color"]').forEach(m=>m.content=nt==="light"?"#ECEFE8":"#06120E");};
   document.startViewTransition&&!REDUCED?document.startViewTransition(go):go();
 });
@@ -1521,15 +1713,15 @@ function sheet(open,noHist){
   if(open){setSheetH(H().half);filters.scrollTop=0;filters.classList.add("open");scrim.classList.add("show");if(!noHist)ovOpen("sheet",()=>sheet(false,true));}
   else{filters.classList.remove("open");scrim.classList.remove("show");if(!noHist)ovClose("sheet");}
 }
-$("openFilters").addEventListener("click",()=>{sheet(true);haptic(8);});
+$("openFilters").addEventListener("click",()=>{sheet(true);haptic("snap");});
 $("closeFilters").addEventListener("click",()=>{sheet(false);scrollToGrid();});
 scrim.addEventListener("click",()=>sheet(false));
-filters.addEventListener("scroll",()=>{if(sheetOpen&&filters.scrollTop>10&&parseInt(filters.style.getPropertyValue("--sh"))<H().full)setSheetH(H().full);},{passive:true});
+filters.addEventListener("scroll",()=>{if(sheetOpen&&filters.scrollTop>10&&parseInt(filters.style.getPropertyValue("--sh"))<H().full){setSheetH(H().full);haptic("snap");}},{passive:true});
 (()=>{let y0=null,h0=0,h=0;
   const down=e=>{if(!sheetOpen||e.target.closest("button"))return;y0=e.clientY;h0=filters.getBoundingClientRect().height;h=h0;filters.classList.add("dragging");e.currentTarget.setPointerCapture(e.pointerId);};
   const move=e=>{if(y0===null)return;h=Math.max(120,Math.min(H().full,h0-(e.clientY-y0)));setSheetH(h);};
   const up=()=>{if(y0===null)return;filters.classList.remove("dragging");y0=null;const {half,full}=H();
-    if(h<half*.62)sheet(false);else setSheetH(Math.abs(h-half)<Math.abs(h-full)?half:full);};
+    if(h<half*.62){haptic("close");sheet(false);}else{setSheetH(Math.abs(h-half)<Math.abs(h-full)?half:full);haptic("snap");}};
   ["grab","fhead"].forEach(id=>{const el=$(id);el.addEventListener("pointerdown",down);el.addEventListener("pointermove",move);el.addEventListener("pointerup",up);el.addEventListener("pointercancel",up);});
 })();
 
@@ -1543,7 +1735,7 @@ async function load(){
   GAMES.forEach(g=>{
     g.c=g.c||[];g.s=g.s||[];g.m=g.m||[];g.des=g.des||[];g.best=g.best||[];g.rec=g.rec||[];g.who=g.who||[];g.exp=g.exp||[];g.alt=g.alt||[];
     const mv=g.c.filter(c=>STYLE_CATS.has(c));g.c=g.c.filter(c=>!STYLE_CATS.has(c));g.s=[...new Set([...g.s,...mv])];
-    g.pl=g.pl||0;g.w=g.w||0;g.r=g.r||0;g.lp=g.lp||"";g.tt=g.t[1]||g.t[0]||0;
+    g.pl=g.pl||0;g.dcz=g.dcz||"";g.w=g.w||0;g.r=g.r||0;g.lp=g.lp||"";g.tt=g.t[1]||g.t[0]||0;
     g._s=norm([g.n,...g.alt,...g.c,...g.s,...g.des].join(" "));
     BYID.set(g.id,g);
   });
@@ -1558,7 +1750,8 @@ async function load(){
   if(store.get("hp-view")==="list"&&!mqMobile.matches)S.view="list";
   if(!META.sample)readURL();
   q.value=S.qRaw;
-  renderHero();renderShelves();
+  renderHero();renderFan();renderShelves();loadNews();
+  if(HAPT.supported){$("haptWrap").hidden=false;$("hapt").checked=HAPT.on;$("hapt").addEventListener("change",e=>{HAPT.set(e.target.checked);if(e.target.checked)haptic("confirm");});}
   (mqMobile.matches?$("slotDock"):$("slotTop")).appendChild($("searchBox"));
   q.placeholder=mqMobile.matches?"Hledat hru…":"Hledat hru, autora nebo téma";
   render(false);

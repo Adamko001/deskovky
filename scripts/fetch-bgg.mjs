@@ -11,7 +11,7 @@ const TOKEN = (process.env.BGG_TOKEN || "").trim();
 const API = process.env.BGG_API || "https://boardgamegeek.com/xmlapi2";
 const OUT = "data/games.json";
 const BATCH = 20;       // BGG vrací nejvýš 20 her na jeden dotaz
-const PAUSE = 2500;     // slušná pauza mezi dotazy
+const PAUSE = +(process.env.PAUSE ?? 2500);     // slušná pauza mezi dotazy
 const MAX_PLAY_PAGES = 40; // až 4000 zaznamenaných partií
 
 const log = (...a) => console.log("•", ...a);
@@ -35,7 +35,7 @@ async function get(url, what) {
       res = await fetch(url, {
         headers: {
           ...(TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {}),
-          "User-Agent": "HerniPolice/2.0 (GitHub Pages; board game filter)",
+          "User-Agent": "Deskovky/2.0 (GitHub Pages; board game filter)",
         },
       });
     } catch (e) {
@@ -113,7 +113,7 @@ function toHsl(r, g, b) {
 async function coverColor(url) {
   if (!sharp || !url) return null;
   try {
-    const res = await fetch(url, { headers: { "User-Agent": "HerniPolice/2.0" } });
+    const res = await fetch(url, { headers: { "User-Agent": "Deskovky/2.0" } });
     if (!res.ok) return null;
     const buf = Buffer.from(await res.arrayBuffer());
     const { dominant } = await sharp(buf).resize(48, 48, { fit: "cover" }).stats();
@@ -128,7 +128,7 @@ async function makeCover(id, url) {
   if (!sharp || !url) return null;
   const file = `${COVER_DIR}/${id}.webp`;
   try {
-    const res = await fetch(url, { headers: { "User-Agent": "HerniPolice/2.0" } });
+    const res = await fetch(url, { headers: { "User-Agent": "Deskovky/2.0" } });
     if (!res.ok) return null;
     const buf = Buffer.from(await res.arrayBuffer());
     await fs.mkdir(COVER_DIR, { recursive: true });
@@ -269,7 +269,8 @@ for (const it of await things([...own.keys()], "Detaily her")) {
   const rank = rankEntry && /^\d+$/.test(rankEntry.value) ? +rankEntry.value : null;
   const designers = lv("boardgamedesigner").filter((d) => d !== "(Uncredited)");
   const publishers = lv("boardgamepublisher");
-  const cz = CFG.CZ_EXTRA_IDS.includes(id) || designers.some((d) => CFG.CZ_DESIGNERS.includes(d)) || publishers.some((p) => CFG.CZ_PUBLISHERS.includes(p));
+  const czName = (d) => { const last = d.trim().split(/\s+/).pop() || ""; return CFG.CZ_NAME_PATTERN.test(last) || /[ěřů]/i.test(d); };
+  const cz = CFG.CZ_EXTRA_IDS.includes(id) || designers.some((d) => CFG.CZ_DESIGNERS.includes(d) || czName(d)) || publishers.some((p) => CFG.CZ_PUBLISHERS.includes(p));
   const img = it.image || it.thumbnail || "";
   const cached = cache.get(id);
   let colr = null, cov = "";

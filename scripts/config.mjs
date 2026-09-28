@@ -1,4 +1,4 @@
-// Nastavení Herní police. Tady můžeš cokoli upravit bez sahání do zbytku kódu.
+// Nastavení Deskovky. Tady můžeš cokoli upravit bez sahání do zbytku kódu.
 
 // Uživatel na BoardGameGeek, jehož kolekce se zobrazuje.
 // (Lze přepsat proměnnou BGG_USER v GitHubu.)
@@ -7,13 +7,22 @@ export const BGG_USER = "JakSeRodi";
 // Které hry z kolekce brát: jen ty označené „Own“ (vlastním).
 export const ONLY_OWNED = true;
 
-// Hry, které se označí jako „české“ (filtr Jen české hry).
-export const CZ_PUBLISHERS = ["Czech Games Edition"];
+// Hry, které se označí jako „české“ (filtr České hry). Rozpozná se to automaticky:
+//  1) autor je v seznamu níže, nebo má v příjmení typicky české znaky (ř, ě, ů) či končí na -ová,
+//  2) původní vydavatel je české herní studio (ne jen distributor české verze).
+export const CZ_PUBLISHERS = [
+  "Czech Games Edition", "TLAMA games", "Delicious Games", "Boardcubator", "Fox in the Box",
+  "Czech Board Games", "Pegas Games", "Hrajeto.cz", "Cool Mini or Not Prague", "Rioni Games",
+];
 export const CZ_DESIGNERS = [
   "Vlaada Chvátil", "Vladimír Suchý", "Michaela Štachová", "Michal Štach", "Petr Mikša",
   "Jindřich Pavlásek", "Tomáš Holek", "Filip Neduk", "Adam Španěl", "Ondřej Bystroň",
-  "Petr Čáslava", "Jiří Bauma", "Jan Zach", "Michal Požárek", "Petr Vojtěch",
+  "Petr Čáslava", "Jiří Bauma", "Jan Zach", "Michal Požárek", "Petr Vojtěch", "Jan Soukal",
+  "Vít Vodička", "David Jirovec", "Tomáš Mikulášek", "Michal Ekrt", "Jan Vaněček", "Petr Murmak",
+  "Milan Tašek", "Martin Kouba", "Jakub Uhlíř", "Lukáš Pacák", "Pavel Atamanchuk", "Kryštof Kubeš",
+  "Jaroslav Vlk", "Eliška Maierová", "Ivan Kolář", "Tomáš Uhlíř", "Jiří Mikoláš",
 ];
+export const CZ_NAME_PATTERN = /[ěřůĚŘŮ]|ová$/;
 // Sem můžeš doplnit BGG ID her, které chceš označit jako české ručně.
 export const CZ_EXTRA_IDS = [];
 
@@ -134,3 +143,12 @@ export const MECH_CZ = {
   "Worker Placement with Dice Workers": "Dělníci z kostek", "Worker Placement, Different Worker Types": "Různé typy dělníků",
   "Zone of Control": "Zóna kontroly",
 };
+
+// Novinky ze světa deskovek (RSS). Každý den se vybere jedna nejdůležitější za posledních 7 dní.
+export const NEWS_FEEDS = [
+  { name: "BoardGameWire", url: "https://boardgamewire.com/index.php/feed/", weight: 1.5 },
+  { name: "Dicebreaker", url: "https://www.dicebreaker.com/feed", weight: 1 },
+  { name: "Meeple Mountain", url: "https://www.meeplemountain.com/feed/", weight: 0.4 },
+  { name: "BoardGameQuest", url: "https://www.boardgamequest.com/feed/", weight: 0.4 },
+  { name: "Google News", url: "https://news.google.com/rss/search?q=%22board+game%22+OR+%22tabletop+game%22+when:7d&hl=en-US&gl=US&ceid=US:en", weight: 0.8, google: true },
+];

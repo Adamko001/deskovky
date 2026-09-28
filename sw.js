@@ -1,5 +1,5 @@
-// Herní police – offline režim a rychlé načítání
-const V = "hp-v3";
+// Deskovky – offline režim a rychlé načítání
+const V = "dk-v4";
 const IMG = "hp-img-v1";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png"];
 
