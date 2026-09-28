@@ -42,13 +42,13 @@ jobs:
       - name: Novinka týdne ze světa deskovek
         continue-on-error: true
         run: node scripts/news.mjs
-     
+
       - name: Doporučení ke koupi
         continue-on-error: true
         env:
           BGG_TOKEN: ${{ secrets.BGG_TOKEN }}
         run: node scripts/recs.mjs
-      
+
       - name: Překlad popisů do češtiny
         continue-on-error: true
         env:
