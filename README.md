@@ -45,8 +45,16 @@ Adresa se ukáže i v **Settings → Pages**.
 
 Po přidání se otevírá na celou obrazovku jako běžná aplikace a funguje i bez signálu.
 
+## Aktualizace na novou verzi
+1. Rozbal nový zip (pravým tlačítkem → Extrahovat vše).
+2. V repozitáři klikni na **Add file → Upload files** a přetáhni obsah rozbalené složky (Ctrl+A). Stejně pojmenované soubory se přepíšou.
+3. Klikni na **Commit changes**.
+4. Soubor `.github/workflows/update.yml` se tím nenahraje (GitHub přeskakuje soubory začínající tečkou). Když se v něm něco mění, otevři ho v repozitáři, klikni na tužku a uprav ho ručně.
+
 ## Jak to funguje
-- Každý den v 6:17 se spustí `scripts/fetch-bgg.mjs`. Stáhne hry označené na BGG jako **Own** (bez rozšíření), jejich detaily, obtížnost, hodnocení, doporučený počet hráčů a počet vašich partií.
+- Každý den v 6:17 se spustí `scripts/fetch-bgg.mjs`. Stáhne hry označené na BGG jako **Own**, jejich detaily, obtížnost, hodnocení, doporučený počet hráčů, vaše zapsané partie (kdy a kdo vyhrál), rozšíření, seznam *Want to Play* a komentáře ke hrám.
+- Obálky se jednou zmenší do `data/covers/`, aby se web na mobilu načítal rychle.
+- **Vlastní poznámky:** na BGG u hry v kolekci vyplň komentář (Comment). Web ho ukáže v detailu hry jako „Naše poznámka“.
 - Výsledek uloží do `data/games.json` a web se znovu zveřejní.
 - Když přidáš hru do kolekce na BGG, na webu se objeví nejpozději další den ráno. Hned to jde tlačítkem **Run workflow**.
 
