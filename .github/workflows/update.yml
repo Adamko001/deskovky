@@ -1,0 +1,61 @@
+name: Aktualizace a zveřejnění
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: herni-police
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalace
+        run: npm install --no-audit --no-fund
+
+      - name: Stažení dat z BoardGameGeek
+        continue-on-error: ${{ github.event_name == 'push' }}
+        env:
+          BGG_TOKEN: ${{ secrets.BGG_TOKEN }}
+          BGG_USER: ${{ vars.BGG_USER }}
+        run: node scripts/fetch-bgg.mjs
+
+      - name: Uložení dat do repozitáře
+        run: |
+          git config user.name "herni-police-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/games.json 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "Aktualizace dat z BGG" && git push)
+
+      - name: Příprava webu
+        run: |
+          mkdir -p _site
+          cp index.html manifest.webmanifest sw.js _site/
+          cp -r icons _site/
+          if [ -d data ]; then cp -r data _site/; fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4
