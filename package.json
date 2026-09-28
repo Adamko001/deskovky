@@ -1,0 +1,12 @@
+{
+  "name": "herni-police",
+  "private": true,
+  "type": "module",
+  "description": "Filtr deskových her z BoardGameGeek kolekce",
+  "scripts": {
+    "data": "node scripts/fetch-bgg.mjs"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.34.0"
+  }
+}
