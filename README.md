@@ -58,13 +58,25 @@ Po přidání se otevírá na celou obrazovku jako běžná aplikace a funguje i
 - Výsledek uloží do `data/games.json` a web se znovu zveřejní.
 - Když přidáš hru do kolekce na BGG, na webu se objeví nejpozději další den ráno. Hned to jde tlačítkem **Run workflow**.
 
-## Popisy her česky (volitelné)
-BGG má popisy jen anglicky. Web je umí automaticky přeložit přes DeepL (zdarma do 500 000 znaků měsíčně, stačí na stovky her):
+## Popisy her a novinka česky
+Bez jakéhokoli nastavení se každý den přeloží novinka týdne a několik popisů her přes bezplatnou službu MyMemory (asi 5 000 znaků denně), takže celá sbírka bude česky postupně během pár týdnů.
+Rychleji a kvalitněji to jde přes DeepL (zdarma do 500 000 znaků měsíčně, přeloží celou sbírku najednou):
 1. Založ si účet **DeepL API Free** na deepl.com/pro-api (při registraci chtějí kartu kvůli ověření, free plán se nestrhává).
 2. V účtu zkopíruj **Authentication Key** (končí na `:fx`).
 3. V repozitáři **Settings → Secrets and variables → Actions → New repository secret**: Name `DEEPL_KEY`, Secret = klíč.
 4. Spusť **Run workflow**. Každý popis se přeloží jen jednou a uloží se.
-Bez klíče web ukazuje anglický popis a tlačítko „Přeložit do češtiny“.
+Dokud popis není přeložený, web ukazuje anglický text a tlačítko „Přeložit do češtiny“.
+
+## Doporučení ke koupi
+Každé ráno `scripts/recs.mjs` porovná vaši sbírku (mechaniky, témata, autory, obtížnost; víc váží hry, které hrajete a které máte dobře hodnocené) s asi 150 špičkovými hrami z BGG a aktuálně populárními hrami. Doporučí jen hry s vysokým hodnocením a dost hlasy, které nevlastníte, a vynechá jiné verze her, které už máte.
+
+## Seznamy: sbírka, wishlist, ceny
+Ikona seznamu v hlavičce (nebo klávesa S) otevře přehled sbírky s datem přidání, wishlist z BGG a tipy ke koupi.
+- **Datum přidání** si web pamatuje sám (`data/history.json`) od dne, kdy hru poprvé uvidí ve sbírce. Hry, které tam byly už při prvním spuštění, mají přibližné datum („ve sbírce asi od“). Když na BGG vyplníš u hry *Acquisition Date*, použije se to.
+- **Ceny** napsané na webu se ukládají jen v zařízení, kde je napíšeš. Aby je viděli všichni, vyplň na BGG u hry *Price Paid* (pokud je BGG přes API vydá).
+
+## Když přidáš novou hru
+Nic nemusíš dělat. Ráno se hra objeví i s obálkou, zařadí se do filtrů, grafu i statistik, dostane datum přidání a doporučení se přepočítají. Když BGG zrovna vrátí neúplná data, web si ponechá včerejší sbírku a zkusí to další den.
 
 ## Novinka týdne
 Každé ráno se z RSS zdrojů (BoardGameWire, Dicebreaker, Google News a další v `scripts/config.mjs`) vybere jedna zpráva za posledních 7 dní. Vyhrává ta, o které píše víc zdrojů a která se týká ocenění, velkých kampaní, akvizic a podobně. Recenze a slevy se přeskakují.

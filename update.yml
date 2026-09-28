@@ -1,0 +1,78 @@
+name: Aktualizace a zveřejnění
+
+on:
+  schedule:
+    - cron: "17 4 * * *"   # každý den v 6:17 letního času (5:17 zimního)
+  workflow_dispatch:        # tlačítko „Run workflow“ pro ruční spuštění
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: deskovky
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalace
+        run: npm install --no-audit --no-fund
+
+      - name: Stažení dat z BoardGameGeek
+        # Při úpravě kódu se web zveřejní i v případě, že BGG zrovna nefunguje.
+        continue-on-error: ${{ github.event_name == 'push' }}
+        env:
+          BGG_TOKEN: ${{ secrets.BGG_TOKEN }}
+          BGG_USER: ${{ vars.BGG_USER }}
+        run: node scripts/fetch-bgg.mjs
+
+      - name: Novinka týdne ze světa deskovek
+        continue-on-error: true
+        run: node scripts/news.mjs
+
+      - name: Doporučení ke koupi
+        continue-on-error: true
+        env:
+          BGG_TOKEN: ${{ secrets.BGG_TOKEN }}
+        run: node scripts/recs.mjs
+
+      - name: Překlad popisů do češtiny
+        continue-on-error: true
+        env:
+          DEEPL_KEY: ${{ secrets.DEEPL_KEY }}
+        run: node scripts/translate.mjs
+
+      - name: Uložení dat do repozitáře
+        run: |
+          git config user.name "deskovky-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "Aktualizace dat z BGG" && git push)
+
+      - name: Příprava webu
+        run: |
+          mkdir -p _site
+          cp index.html manifest.webmanifest sw.js _site/
+          cp -r icons _site/
+          if [ -d data ]; then cp -r data _site/; fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4

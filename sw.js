@@ -1,5 +1,5 @@
 // Deskovky – offline režim a rychlé načítání
-const V = "dk-v4";
+const V = "dk-v5";
 const IMG = "hp-img-v1";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png"];
 

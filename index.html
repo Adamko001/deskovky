@@ -321,7 +321,7 @@ details.adv[open]>summary svg{rotate:180deg}
 .hex{position:absolute;top:9px;right:9px;z-index:4;width:44px;height:39px;display:grid;place-items:center;clip-path:polygon(25% 3%,75% 3%,100% 50%,75% 97%,25% 97%,0 50%);font:600 13.5px var(--f-mono);color:#fff;background:var(--r-hi);font-variant-numeric:tabular-nums}
 .hex.mid{background:var(--r-mid)}.hex.low{background:var(--r-low)}
 .flag{position:absolute;left:9px;z-index:4;display:inline-flex;align-items:center;gap:5px;font:600 10px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border-radius:8px;background:rgba(6,18,14,.66);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);color:#F4D690}
-.flag.top{top:9px}
+.flag.ftop{top:9px}
 .flag.best{color:#9FF0C4}
 .flag.cz{bottom:9px}
 .info{padding:12px 14px 14px;display:grid;gap:8px;flex:1;align-content:start}
@@ -518,7 +518,8 @@ footer p{margin:0}
   background:linear-gradient(100deg,var(--brass-soft),transparent 60%),var(--glass);border:1px solid color-mix(in oklab,var(--brass) 30%,transparent);transition:border-color .2s,transform .3s var(--ease)}
 a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
 .news .n-ic{grid-row:1/4;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--brass-soft);color:var(--brass)}
-.news .eyebrow,.news strong,.news .news-src{grid-column:2;min-width:0}
+.news .eyebrow,.news strong,.news .news-src,.news .news-perex{grid-column:2;min-width:0}
+.news .news-perex{font-size:14px;line-height:1.5;color:var(--ink-2);max-width:90ch;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .news strong{font:italic 600 clamp(19px,1.8vw,24px)/1.18 var(--f-display);letter-spacing:-.01em;text-wrap:balance}
 .news .news-src{font:500 12.5px var(--f-mono);color:var(--muted)}
 .news .n-go{grid-row:1/4;grid-column:3;color:var(--brass)}
@@ -570,6 +571,80 @@ a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
 .desc-act .linkbtn{display:inline-flex;align-items:center;gap:5px;text-decoration:none}
 .foot-h{font-size:13px;min-height:36px;gap:14px}
 .lbl-s{display:none}
+
+/* ---------- karta: čistší spodní část ---------- */
+.info{padding:12px 14px 14px;display:flex;flex-direction:column;gap:9px;flex:1;min-width:0}
+.ttl{min-width:0}
+.facts{display:flex;flex-wrap:wrap;gap:4px 14px;font:500 12.5px var(--f-mono);color:var(--ink-2);min-width:0}
+.facts span{display:inline-flex;align-items:center;gap:6px;min-width:0;white-space:nowrap}
+.facts b{font-weight:500;font-variant-numeric:tabular-nums}
+.facts svg{color:var(--muted);flex:none}
+.wrow{display:flex;align-items:center;gap:8px;font:400 12px var(--f-mono);color:var(--muted);min-width:0}
+.wrow .wl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wrow .wn{margin-left:auto;font-variant-numeric:tabular-nums}
+.hist{display:flex;align-items:center;gap:6px;font:400 12px var(--f-mono);color:var(--muted);min-width:0;margin-top:auto}
+.hist span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.grid.list .facts{flex-wrap:nowrap}
+.grid.list .info{display:grid}
+.grid.list .wrow .wn{margin-left:0}
+
+.yc-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.yc-stats span{background:var(--panel);padding:10px 12px;display:grid;gap:2px;min-width:0}
+.yc-stats em{font:500 10px var(--f-mono);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.yc-stats b{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.yc-stats small{font:12px var(--f-mono);color:var(--muted)}
+.facts-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:6px;padding-top:16px;border-top:1px solid var(--line)}
+.fact{display:grid;gap:4px;min-width:0}
+.fact b{font:500 22px/1.15 var(--f-display);color:var(--ink);font-variant-numeric:lining-nums}
+.fact b.fl{font:italic 600 18px/1.2 var(--f-display);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fact small{font-size:12.5px;color:var(--muted)}
+.yb i{background:linear-gradient(var(--brass-2),var(--brass))!important}
+
+.sort-chip{display:inline-flex;align-items:center;gap:6px}
+.sort-chip .dir{display:none;transition:rotate .3s var(--spring)}
+.sort-chip[aria-pressed="true"] .dir{display:block}
+.sort-chip.asc .dir{rotate:180deg}
+
+/* ---------- doporučení ke koupi ---------- */
+.recs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.recs.all{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.rec{border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.rec-top{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center}
+.rec-top .thumb{width:64px;height:64px;border-radius:14px}
+.rec h4{margin:0 0 6px;font:italic 600 19px/1.12 var(--f-display);text-wrap:balance}
+.rec-wish{align-self:start;display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--brass);background:var(--brass-soft);border-radius:8px;padding:4px 8px}
+.rec-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;font:500 12.5px var(--f-mono);color:var(--muted)}
+/* ---------- dialog seznamů ---------- */
+#lists{width:min(860px,calc(100% - 40px));height:min(90dvh,900px);max-height:min(90dvh,900px)}
+.l-bar{display:flex;align-items:center;gap:10px;padding:14px 16px 12px 18px;border-bottom:1px solid var(--line);flex:none}
+.l-tabs{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--line);margin-right:auto;min-width:0;overflow-x:auto;scrollbar-width:none}
+.l-tabs button{flex:none;border:0;background:transparent;border-radius:10px;padding:8px 14px;font-weight:600;font-size:14px;color:var(--ink-2);display:inline-flex;gap:7px;align-items:baseline}
+.l-tabs button small{font:500 11.5px var(--f-mono);color:var(--muted)}
+.l-tabs button[aria-selected="true"]{background:var(--panel);color:var(--ink);box-shadow:0 2px 8px -2px rgba(0,0,0,.35)}
+.l-body{flex:1;overflow:auto;overscroll-behavior:contain;padding:18px 20px 28px;display:flex;flex-direction:column;gap:16px}
+.l-sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.l-sum>div{border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:grid;gap:4px}
+.l-sum b{font:500 26px/1.1 var(--f-display);font-variant-numeric:lining-nums tabular-nums}
+.l-sum small{font-size:12.5px;color:var(--muted)}
+.l-tools{display:flex;justify-content:flex-end}
+.l-list{display:grid;gap:6px}
+.lrow{display:grid;grid-template-columns:44px minmax(0,1fr) 124px;gap:12px;align-items:center;padding:6px 8px 6px 6px;border-radius:14px;border:1px solid var(--line)}
+.lrow .thumb{width:44px;height:44px;border-radius:10px}
+.lrow .thumb span{font-size:14px}
+.l-name{border:0;background:none;padding:4px 0;text-align:left;min-width:0;display:grid;gap:2px;text-decoration:none;color:var(--ink);cursor:pointer}
+.l-name strong{font-size:14.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.l-name small{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.l-price{display:flex;align-items:center;gap:6px;height:40px;border-radius:11px;border:1px solid var(--line-2);padding:0 10px;background:var(--panel)}
+.l-price:focus-within{border-color:var(--brass);box-shadow:0 0 0 4px var(--brass-soft)}
+.l-price input{flex:1;min-width:0;border:0;background:none;text-align:right;font:500 14px var(--f-mono);outline:none}
+.l-price span{font:500 12.5px var(--f-mono);color:var(--muted)}
+.prio{font-size:11px;font-weight:600;padding:2px 7px;border-radius:6px;background:var(--line);color:var(--ink-2)}
+.prio.p1,.prio.p2{background:var(--brass-soft);color:var(--brass)}
+.l-note{margin:0;font-size:12.5px;color:var(--muted);line-height:1.5;max-width:70ch}
+.hseg{display:inline-flex;padding:3px;border-radius:11px;border:1px solid var(--line-2);gap:2px}
+.hseg button{border:0;background:transparent;border-radius:8px;padding:6px 10px;font-size:12.5px;font-weight:500;color:var(--ink-2);min-height:32px}
+.hseg button[aria-checked="true"]{background:var(--ink);color:var(--bg)}
+.foot-h{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px}
 .dock,.scrim,.m-only{display:none}
 
 /* =============================================================
@@ -603,6 +678,23 @@ a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
   .layout{grid-template-columns:minmax(0,1fr);padding-bottom:calc(120px + env(safe-area-inset-bottom,0px))}
   .shelf-row{grid-auto-columns:clamp(120px,34vw,160px);margin-inline:calc(-1 * clamp(16px,2.6vw,36px));padding-inline:clamp(16px,2.6vw,36px);scroll-padding-inline:clamp(16px,2.6vw,36px)}
   .shelf-nav{display:none}
+  .recs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(-1 * clamp(16px,2.6vw,36px));padding-inline:clamp(16px,2.6vw,36px);scroll-padding-inline:clamp(16px,2.6vw,36px);gap:12px}
+  .recs::-webkit-scrollbar{display:none}
+  .recs .rec{flex:none;width:min(84vw,340px);scroll-snap-align:start}
+  .recs.all{display:grid;grid-template-columns:1fr;margin:0;padding:0;overflow:visible}
+  .recs.all .rec{width:auto}
+  #lists{width:100%;max-width:100%;height:100dvh;max-height:100dvh;border-radius:0;border:0;margin:0}
+  #lists .l-bar{padding-top:calc(12px + env(safe-area-inset-top,0px))}
+  #lists .l-body{padding:16px 16px calc(28px + env(safe-area-inset-bottom,0px))}
+  .lrow{grid-template-columns:40px minmax(0,1fr) 104px;gap:10px}
+  .lrow .thumb{width:40px;height:40px}
+  .l-sum{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .l-sum>div{padding:10px}
+  .l-sum b{font-size:21px}
+  .l-sum small,.l-sum .stat-k{font-size:10.5px}
+  .l-tabs button{flex:1 1 auto;justify-content:center;padding:8px 9px;font-size:13.5px}
+  .l-bar{gap:8px;padding-left:12px;padding-right:12px}
+
   .hero-main{grid-template-columns:minmax(0,1fr);grid-template-areas:"f" "t" "c"}
   .bento{align-items:flex-start}
   .leaders{flex-wrap:nowrap;overflow:hidden}
@@ -621,6 +713,10 @@ a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
   .yc-big b{font-size:32px}
   .yc-body{grid-template-columns:20px minmax(0,1fr)}
   .yc-x{margin-left:26px}
+  .yc-stats{grid-template-columns:1fr 1fr}
+  .yc-stats span:last-child{grid-column:1/-1}
+  .facts-row{grid-template-columns:1fr 1fr}
+  .fact b{font-size:19px}
 
   .shelf-h h3,.grid-h h3{font-size:22px}
 
@@ -679,12 +775,16 @@ a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
   .card{border-radius:18px}
   .cover{margin:5px 5px 0;border-radius:14px}
   .gen b{font-size:16px}
-  .info{padding:10px 11px 12px;gap:7px}
-  .info h3{font-size:14px}
+  .info{padding:11px 12px 13px;gap:8px}
+  .info h3{font-size:14.5px;line-height:1.25}
+  .facts{font-size:12px;gap:4px 10px}
+  .facts svg{width:13px;height:13px}
+  .wrow .wn{display:none}
+  .flag .lg{display:none}
   .sub{display:none}
   .m{height:24px;padding:0 7px;font-size:11.5px}
   .hex{width:38px;height:34px;font-size:12px;top:7px;right:7px}
-  .flag{left:7px;font-size:9px;padding:5px 6px}.flag.top{top:7px}.flag.cz{bottom:7px}
+  .flag{left:7px;font-size:9px;padding:5px 6px}.flag.ftop{top:7px}.flag.cz{bottom:7px}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sims{gap:8px}
   .sim small{display:none}
@@ -735,6 +835,9 @@ a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
   <symbol id="i-install" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></symbol>
   <symbol id="i-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6-6-6 6 6 6"/></symbol>
   <symbol id="i-news" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h13v14H6a2 2 0 0 1-2-2V5Zm13 4h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5M8 16h3"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m0 0-6-6m6 6 6-6"/></symbol>
+  <symbol id="i-lists" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h16M4 12h16M4 19h10M18 16v6m-3-3h6"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 4h2l2.4 11h10.8L21 8H6.2M9 20h.01M18 20h.01"/></symbol>
   <symbol id="i-cards" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M8 4h11v15H8zM5 7v13h11"/></symbol>
 </svg>
 
@@ -758,6 +861,7 @@ a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
     <div class="top-actions">
       <button class="btn sm" id="install" type="button" hidden><svg width="16" height="16"><use href="#i-install"/></svg><span class="d-only">Nainstalovat</span></button>
       <button class="icon-btn top-i d-only" id="keysBtn" type="button" title="Klávesové zkratky (?)" aria-label="Klávesové zkratky"><svg width="19" height="19"><use href="#i-keyboard"/></svg></button>
+      <button class="icon-btn top-i" id="listsBtn" type="button" title="Sbírka, wishlist a tipy ke koupi (S)" aria-label="Sbírka, wishlist a tipy ke koupi"><svg width="19" height="19"><use href="#i-lists"/></svg></button>
       <button class="icon-btn top-i" id="share" type="button" title="Zkopírovat odkaz na tento výběr" aria-label="Sdílet výběr"><svg width="19" height="19"><use href="#i-share"/></svg></button>
       <button class="icon-btn top-i theme-ico" id="theme" type="button" title="Přepnout světlý a tmavý vzhled" aria-label="Přepnout vzhled"><svg class="sun" width="19" height="19"><use href="#i-sun"/></svg><svg class="moon" width="19" height="19"><use href="#i-moon"/></svg></button>
     </div>
@@ -866,7 +970,7 @@ a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
           <button type="button" id="vList" aria-pressed="false" title="Seznam (L)"><svg width="17" height="17"><use href="#i-list"/></svg></button>
         </div>
         <button class="icon-btn sm roll-btn m-only" type="button" aria-label="Vylosovat hru z výsledků"><svg class="die" width="18" height="18"><use href="#i-die"/></svg></button>
-        <div class="sortbar" id="sortbar" role="group" aria-label="Řazení"></div>
+        <div class="sortbar" id="sortbar" role="group" aria-label="Řazení"></div><span class="sr" id="sortLive" aria-live="polite"></span>
         <div class="active" id="active"></div>
       </div>
       <div class="shelves" id="shelves"></div>
@@ -875,7 +979,7 @@ a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
         <span></span>
         <button type="button" data-s="name">Hra</button>
         <span>Hráči · doba</span>
-        <button type="button" data-s="heavy">Obtížnost</button>
+        <button type="button" data-s="weight">Obtížnost</button>
         <button type="button" data-s="rating" class="r">BGG</button>
         <button type="button" data-s="plays" class="r">Partie</button>
         <button type="button" data-s="recent" class="r c-lp">Naposledy</button>
@@ -888,7 +992,7 @@ a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
 <footer>
   <div class="wrap">
     <p id="foot">Deskovky</p>
-    <label class="toggle foot-h" for="hapt" id="haptWrap" hidden><span>Vibrace při ovládání</span><span class="switch"><input type="checkbox" id="hapt"><span></span></span></label>
+    <div class="foot-h" id="haptWrap" hidden><span>Vibrace</span><div class="hseg" id="hseg" role="radiogroup" aria-label="Síla vibrací"><button type="button" data-hl="0" role="radio">Vypnuto</button><button type="button" data-hl="1" role="radio">Jemné</button><button type="button" data-hl="2" role="radio">Střední</button><button type="button" data-hl="3" role="radio">Silné</button></div></div>
     <a class="bgg" href="https://boardgamegeek.com" target="_blank" rel="noopener">Powered by <b>BGG</b></a>
   </div>
 </footer>
@@ -901,11 +1005,13 @@ a.news[href]:hover{border-color:var(--brass);transform:translateY(-2px)}
 <div class="scrim" id="scrim"></div>
 <dialog id="detail" aria-label="Detail hry"></dialog>
 <dialog id="night" aria-label="Herní večer"></dialog>
+<dialog id="lists" aria-label="Sbírka, wishlist a tipy ke koupi"></dialog>
 <dialog id="keys" aria-label="Klávesové zkratky">
   <h3>Klávesové zkratky</h3>
   <dl>
     <dt><kbd>Ctrl</kbd><kbd>K</kbd></dt><dd>Hledat (také <kbd>/</kbd>)</dd>
     <dt><kbd>N</kbd></dt><dd>Naplánovat herní večer</dd>
+    <dt><kbd>S</kbd></dt><dd>Sbírka, wishlist a tipy ke koupi</dd>
     <dt><kbd>R</kbd></dt><dd>Vylosovat hru z výsledků</dd>
     <dt><kbd>G</kbd> <kbd>L</kbd></dt><dd>Mřížka a seznam</dd>
     <dt><kbd>←</kbd><kbd>→</kbd></dt><dd>Předchozí a další hra v detailu</dd>
@@ -976,7 +1082,8 @@ function sampleData(){
     const pl=rnd(1)<.16?0:Math.round(rnd(2)*rnd(2)*34)+1;
     const lp=pl?new Date(now-Math.round(rnd(3)*rnd(3)*640+1)*864e5).toISOString().slice(0,10):"";
     const who=pl?names.slice(0,2+Math.floor(rnd(4)*3)).map((nm,k)=>{const p=Math.max(1,Math.round(pl*(1-k*.18)));return{n:nm,p,w:Math.round(p*rnd(5+k)*.55)}}):[];
-    return {id,n,alt:id===178900?["Krycí jména"]:[],y,p:[p0,p1],t:[t0,t1],a:p1>6?10:(w>3?14:10),w,r,rk:null,c,s,m:[],des:des.split("|"),img:"",cov:"",col:`hsl(${HUES[(id*7+n.length)%HUES.length]} 45% 34%)`,best,rec,pl,my:null,ci:i,add:"",
+    const acq=new Date(now-Math.round(rnd(7)*1500+3)*864e5).toISOString().slice(0,10);
+    return {id,n,acq,acqX:i<30?1:0,alt:id===178900?["Krycí jména"]:[],y,p:[p0,p1],t:[t0,t1],a:p1>6?10:(w>3?14:10),w,r,rk:null,c,s,m:[],des:des.split("|"),img:"",cov:"",col:`hsl(${HUES[(id*7+n.length)%HUES.length]} 45% 34%)`,best,rec,pl,my:null,ci:i,add:"",
       wp:[342942,162886,233078,205637,240980,350184].includes(id),note:SAMPLE_NOTES[id]||"",lp,who,exp:(SAMPLE_EXP[id]||[]).map((x,k)=>({id:id*10+k,n:x,img:""})),cz:!!cz,
       d:"Popis hry se na webu načte z BoardGameGeek. V náhledu jsou ukázková data, takže tu místo anglického popisu z BGG stojí tento zástupný text."};
   });
@@ -995,7 +1102,7 @@ const partii=n=>plural(n,"partie","partie","partií");
 const hracu=n=>plural(n,"hráč","hráči","hráčů");
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const wLabel=w=>!w?"neuvedeno":w<1.6?"lehká":w<2.4?"pohodová":w<3.2?"střední":w<3.9?"náročná":"expertní";
-const pTxt=g=>g.p[0]===g.p[1]?`${g.p[0]}`:`${g.p[0]}–${g.p[1]}`;
+const pTxt=g=>!g.p[1]?"?":g.p[0]===g.p[1]?`${g.p[0]}`:`${g.p[0]}–${g.p[1]}`;
 const tTxt=g=>!g.t[1]?"–":g.t[0]===g.t[1]?`${g.t[0]} min`:`${g.t[0]}–${g.t[1]} min`;
 const hexCls=r=>r>=8?"":r>=7.3?"mid":"low";
 const initials=n=>n.replace(/[:'’]/g,"").split(/\s+/).filter(w=>/^[\p{L}0-9]/u.test(w)).slice(0,2).map(w=>w[0]).join("");
@@ -1010,23 +1117,39 @@ const days=d=>d?Math.max(0,Math.floor((TODAY-new Date(d+"T12:00:00").getTime())/
 function rel(d){const n=days(d);if(n===Infinity)return"";if(n<1)return"dnes";if(n<2)return"včera";if(n<7)return`před ${n} dny`;if(n<14)return"před týdnem";if(n<31)return`před ${Math.floor(n/7)} týdny`;const m=Math.floor(n/30.4);if(m<2)return"před měsícem";if(m<12)return`před ${m} měsíci`;const y=Math.floor(n/365);return y<2?"před rokem":`před ${y} lety`}
 function relShort(d){const n=days(d);if(n===Infinity)return"";if(n<1)return"dnes";if(n<2)return"včera";if(n<7)return`${n} d`;if(n<31)return`${Math.floor(n/7)} týd.`;const m=Math.floor(n/30.4);if(m<12)return`${m} měs.`;return`${Math.floor(n/365)} r.`}
 const dateCz=s=>{const d=new Date(s);return isNaN(d)?"":d.toLocaleDateString("cs-CZ",{day:"numeric",month:"numeric",year:"numeric"})};
-/* Haptika: Android (Vibration API) přesné vzory, iPhone s iOS 18+ systémový „tick“ přes nativní přepínač */
+/* Haptika
+   Android: Vibration API (Chrome). Model telefonu se zjistí přes Client Hints a vzory se doladí:
+     • Google Pixel – velmi rychlý lineární motor, stačí krátké ostré pulzy (6–12 ms)
+     • Samsung Galaxy S – u krátkých pulzů slabší náběh, proto o něco delší pulzy (10–18 ms)
+   Síla se dá změnit v patičce (jemné / střední / silné) – násobí délku pulzů, pauzy zůstávají.
+   iPhone (iOS 18+): systémový „tick“ přes nativní přepínač (web jiný přístup k Taptic Engine nemá). */
 const HAPT=(()=>{
   const canVib=typeof navigator.vibrate==="function";
   const ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
   let lbl=null;
-  if(!canVib&&ios){lbl=document.createElement("label");lbl.setAttribute("aria-hidden","true");lbl.style.cssText="position:fixed;left:-200px;top:0;width:1px;height:1px;overflow:hidden;opacity:.01;pointer-events:none";
-    const i=document.createElement("input");i.type="checkbox";i.setAttribute("switch","");i.tabIndex=-1;lbl.appendChild(i);document.body.appendChild(lbl);}
-  let on=(()=>{try{return localStorage.getItem("hp-haptics")!=="0"}catch{return true}})();
-  // délky v ms: krátké ostré pulzy působí na kvalitních lineárních motorech jako „cvaknutí“
-  const P={tick:[5],select:[9],tap:[12],nav:[7],snap:[4,32,7],confirm:[9,48,16],close:[14],warn:[22,70,22],
-    success:[10,55,10,55,26],roll:[6,26,5,30,7,38,8,52,10,74,26]};
+  const mkLbl=()=>{if(lbl||canVib||!ios||!document.body)return;lbl=document.createElement("label");lbl.setAttribute("aria-hidden","true");lbl.style.cssText="position:fixed;left:-200px;top:0;width:1px;height:1px;overflow:hidden;opacity:.01;pointer-events:none";
+    const i=document.createElement("input");i.type="checkbox";i.setAttribute("switch","");i.tabIndex=-1;lbl.appendChild(i);document.body.appendChild(lbl);};
+  mkLbl();
+  const rd=(k,d)=>{try{const v=localStorage.getItem(k);return v===null?d:v}catch{return d}};
+  let level=rd("dk-hlevel","2");                 // 0 vypnuto, 1 jemné, 2 střední, 3 silné
+  if(rd("hp-haptics","1")==="0")level="0";
+  let prof="default";
+  try{navigator.userAgentData?.getHighEntropyValues?.(["model"]).then(v=>{const m=(v&&v.model)||"";if(/^SM-|Galaxy/i.test(m))prof="samsung";else if(/Pixel/i.test(m))prof="pixel";}).catch(()=>{});}catch{}
+  if(/Pixel/i.test(navigator.userAgent))prof="pixel";else if(/SM-[SNFG]/i.test(navigator.userAgent))prof="samsung";
+  // [délka pulzu, pauza, délka pulzu, …] v ms
+  const BASE={
+    pixel:  {tick:[6],select:[10],tap:[13],nav:[8],snap:[5,34,9],confirm:[10,50,18],close:[16],warn:[24,80,24],success:[10,60,10,60,28],roll:[7,28,6,32,8,40,9,54,11,76,28]},
+    samsung:{tick:[11],select:[15],tap:[18],nav:[12],snap:[9,40,13],confirm:[14,55,24],close:[22],warn:[30,85,30],success:[14,65,14,65,34],roll:[11,30,10,34,12,42,13,56,15,78,34]},
+    default:{tick:[8],select:[12],tap:[15],nav:[10],snap:[7,36,10],confirm:[12,52,20],close:[18],warn:[26,80,26],success:[12,60,12,60,30],roll:[9,28,8,32,10,40,11,54,13,76,30]},
+  };
+  const MUL={"1":.7,"2":1,"3":1.45};
   const T={tick:[0],select:[0],tap:[0],nav:[0],snap:[0,45],confirm:[0,70],close:[0],warn:[0,120],success:[0,90,190],roll:[0,55,120,200,310,480]};
   let last=0;
-  function play(k){if(!on)return;const now=performance.now();if(k==="tick"&&now-last<35)return;last=now;
-    if(canVib){try{navigator.vibrate(P[k]||P.tap)}catch{}}
-    else if(lbl){(T[k]||[0]).forEach(t=>t?setTimeout(()=>lbl.click(),t):lbl.click());}}
-  return{play,supported:canVib||!!lbl,get on(){return on},set(v){on=v;try{localStorage.setItem("hp-haptics",v?"1":"0")}catch{}}};
+  function play(k){if(level==="0")return;const now=performance.now();if(k==="tick"&&now-last<35)return;last=now;
+    if(canVib){const b=(BASE[prof]||BASE.default)[k]||BASE.default.tap,m=MUL[level]||1;
+      try{navigator.vibrate(b.map((v,i)=>i%2?v:Math.max(4,Math.min(80,Math.round(v*m)))))}catch{}}
+    else{mkLbl();if(lbl)(T[k]||[0]).forEach(t=>t?setTimeout(()=>lbl.click(),t):lbl.click());}}
+  return{play,supported:canVib||ios,get level(){return level},get prof(){return prof},set(l){level=String(l);try{localStorage.setItem("dk-hlevel",level);localStorage.setItem("hp-haptics",level==="0"?"0":"1")}catch{}}};
 })();
 const haptic=k=>HAPT.play(k);
 const ic=(id,s=16)=>`<svg width="${s}" height="${s}" aria-hidden="true"><use href="#${id}"/></svg>`;
@@ -1037,7 +1160,7 @@ const LONG_DAYS=183;
 
 let GAMES=[],META={sample:true},BYID=new Map(),YMIN=1990,YMAX=2026,THEMES=[],STYLES=[],DESIGNERS=[],MECHS=[];
 const DEF=()=>({q:"",qRaw:"",players:0,rec:false,time:[0,240],weight:[1,5],rmin:0,year:[YMIN,YMAX],age:0,themes:new Set(),styles:new Set(),des:new Set(),mech:new Set(),cz:false,wp:false,long:false,never:false});
-let S=Object.assign(DEF(),{sort:"fit",view:"grid"});
+let S=Object.assign(DEF(),{sort:"fit",dir:"",view:"grid"});
 const snap=()=>({...S,time:[...S.time],weight:[...S.weight],year:[...S.year],themes:new Set(S.themes),styles:new Set(S.styles),des:new Set(S.des),mech:new Set(S.mech)});
 
 /* =================== filtr =================== */
@@ -1063,19 +1186,28 @@ function matches(g,skip){
   return true;
 }
 const fitScore=g=>{const n=S.players;if(!n)return 0;const k=Math.min(n,8);return g.best.includes(k)?2:g.rec.includes(k)?1:0};
+const fitCmp=(a,b)=>fitScore(b)-fitScore(a)||(b.wp-a.wp)||b.r-a.r||a.n.localeCompare(b.n,"cs");
 const SORTS={
-  fit:{l:"Doporučené",f:(a,b)=>fitScore(b)-fitScore(a)||(b.wp-a.wp)||b.r-a.r},
-  rating:{l:"Hodnocení",f:(a,b)=>b.r-a.r},
-  recent:{l:"Naposledy hrané",f:(a,b)=>(b.lp||"").localeCompare(a.lp||"")||b.pl-a.pl},
-  longest:{l:"Nejdéle nehrané",f:(a,b)=>(a.pl?0:1)-(b.pl?0:1)||(a.lp||"9").localeCompare(b.lp||"9")},
-  plays:{l:"Nejhranější",f:(a,b)=>b.pl-a.pl||b.r-a.r},
-  added:{l:"Nově přidané",f:(a,b)=>(b.ci||0)-(a.ci||0)},
-  new:{l:"Nejnovější",f:(a,b)=>b.y-a.y||b.r-a.r},
-  light:{l:"Nejlehčí",f:(a,b)=>(a.w||9)-(b.w||9)},
-  heavy:{l:"Nejtěžší",f:(a,b)=>b.w-a.w},
-  short:{l:"Nejkratší",f:(a,b)=>a.tt-b.tt||a.t[0]-b.t[0]},
-  name:{l:"A–Z",f:(a,b)=>a.n.localeCompare(b.n,"cs")},
+  fit:{l:"Doporučené"},
+  rank:{l:"Žebříček BGG",d:"asc",v:g=>g.rk||null,up:"od 1. místa",down:"od nejnižšího"},
+  rating:{l:"Hodnocení",d:"desc",v:g=>g.r||null,up:"od nejnižšího",down:"od nejvyššího"},
+  weight:{l:"Obtížnost",d:"asc",v:g=>g.w||null,up:"od nejlehčí",down:"od nejtěžší"},
+  time:{l:"Herní doba",d:"asc",v:g=>g.tt||null,up:"od nejkratší",down:"od nejdelší"},
+  year:{l:"Rok vydání",d:"desc",v:g=>g.y||null,up:"od nejstarší",down:"od nejnovější"},
+  acq:{l:"Nově koupené",d:"desc",v:g=>g.acq||null,up:"od nejdéle vlastněné",down:"od nejnovější"},
+  name:{l:"Abecedně",d:"asc",v:g=>g.n,str:true,up:"A → Z",down:"Z → A"},
+  plays:{l:"Nejčastěji hrajeme",d:"desc",v:g=>g.pl||0,up:"od nejméně hrané",down:"od nejhranější"},
+  recent:{l:"Naposledy hrané",d:"desc",v:g=>g.lp||null,hidden:true,up:"od nejdávnější",down:"od poslední"},
 };
+function sortFn(key,dir){
+  const d=SORTS[key];if(!d||!d.v)return fitCmp;
+  const m=(dir||d.d)==="asc"?1:-1;
+  return(a,b)=>{const x=d.v(a),y=d.v(b);
+    if(x==null&&y==null)return a.n.localeCompare(b.n,"cs");if(x==null)return 1;if(y==null)return -1;
+    const c=d.str?String(x).localeCompare(String(y),"cs"):(x<y?-1:x>y?1:0);
+    return c*m||(b.r-a.r)||a.n.localeCompare(b.n,"cs");};
+}
+const BY={rating:sortFn("rating","desc"),recent:sortFn("recent","desc"),plays:sortFn("plays","desc")};
 
 /* předvolby */
 const TIME_CH=[{l:"Do 30 min",r:[0,30]},{l:"Do hodiny",r:[0,60]},{l:"1–2 hodiny",r:[60,120]},{l:"Přes 2 hodiny",r:[120,240]}];
@@ -1102,7 +1234,7 @@ function dualRange(key,{min,max,step,label}){
   const host=$("r-"+key);
   host.innerHTML=`<div class="track"></div><div class="fill"></div><input type="range" id="${key}-a" min="${min}" max="${max}" step="${step}" aria-label="${label} od"><input type="range" id="${key}-b" min="${min}" max="${max}" step="${step}" aria-label="${label} do">`;
   const [a,b]=host.querySelectorAll("input"),fill=host.querySelector(".fill");
-  const paint=()=>{const lo=Math.max(min,Math.min(max,S[key][0])),hi=Math.max(min,Math.min(max,S[key][1]));const pa=(lo-min)/(max-min)*100,pb=(hi-min)/(max-min)*100;fill.style.left=pa+"%";fill.style.width=(pb-pa)+"%";a.value=lo;b.value=hi;a.style.zIndex=lo>max-(max-min)*.12?3:2;};
+  const paint=()=>{const lo=Math.max(min,Math.min(max,S[key][0])),hi=Math.max(min,Math.min(max,S[key][1]));const sp=(max-min)||1,pa=(lo-min)/sp*100,pb=(hi-min)/sp*100;fill.style.left=pa+"%";fill.style.width=(pb-pa)+"%";a.value=lo;b.value=hi;a.style.zIndex=lo>max-(max-min)*.12?3:2;};
   const on=i=>e=>{let v=+e.target.value;if(i===0)v=Math.min(v,S[key][1]);else v=Math.max(v,S[key][0]);S[key][i]=Math.round(v*10)/10;paint();schedule();};
   a.addEventListener("input",on(0));b.addEventListener("input",on(1));
   RANGES[key]={paint};paint();
@@ -1124,23 +1256,23 @@ function mkCard(g){
   const el=document.createElement("article");
   el.className="card";el.tabIndex=0;el.dataset.id=g.id;el.setAttribute("role","button");el.setAttribute("aria-label",`${g.n}, otevřít detail`);
   el.style.setProperty("--c",g.col);
-  const hist=g.pl?`<div class="hist">${ic("i-history",13)}${g.pl}× · ${g.lp?relShort(g.lp):"hráno"}</div>`:`<div class="hist never">${ic("i-sparkle",13)}Ještě nehráno</div>`;
+  const hist=g.pl?`<div class="hist">${ic("i-history",13)}<span>${g.pl}× hráno${g.lp?` · ${esc(relShort(g.lp))}`:""}</span></div>`:"";
   el.innerHTML=`<div class="cover">${imgTag(g)}<div class="gen"><b>${esc(g.n)}</b><i>${esc(initials(g.n))}</i></div><span class="glare"></span>
-      <span class="hex ${hexCls(g.r)}" title="Hodnocení BGG">${nf1(g.r)}</span>
-      <span class="flag top" hidden></span>${g.cz?'<span class="flag cz">CZ</span>':""}</div>
+      ${g.r?`<span class="hex ${hexCls(g.r)}" title="Hodnocení BGG">${nf1(g.r)}</span>`:""}
+      <span class="flag ftop" hidden></span>${g.cz?'<span class="flag cz">CZ</span>':""}</div>
     <div class="info">
-      <div><h3>${esc(g.n)}</h3><div class="sub">${g.y||""}${g.des.length?" · "+esc(g.des[0]):""}</div></div>
-      <div class="meta"><span class="m">${ic("i-players",13)}${pTxt(g)}</span><span class="m">${ic("i-clock",13)}${tTxt(g)}</span></div>
-      <div class="wrow"><span class="pips" style="--w:${(g.w||0)/5*100}%"></span>${g.w?nf2(g.w)+" · "+wLabel(g.w):"neuvedeno"}</div>
+      <div class="ttl"><h3>${esc(g.n)}</h3><div class="sub">${[g.y||"",g.des[0]?esc(g.des[0]):""].filter(Boolean).join(" · ")}</div></div>
+      <div class="facts"><span>${ic("i-players",14)}<b>${pTxt(g)}</b></span>${g.t[1]?`<span>${ic("i-clock",14)}<b>${tTxt(g)}</b></span>`:""}</div>
+      ${g.w?`<div class="wrow"><span class="pips" style="--w:${g.w/5*100}%"></span><span class="wl">${wLabel(g.w)}</span><span class="wn">${nf2(g.w)}</span></div>`:""}
       ${hist}
-      <span class="col-rt">${nf1(g.r)}</span><span class="col-pl">${g.pl||"–"}</span><span class="col-lp">${g.lp?rel(g.lp):"–"}</span>
+      <span class="col-rt">${g.r?nf1(g.r):"–"}</span><span class="col-pl">${g.pl||"–"}</span><span class="col-lp">${g.lp?rel(g.lp):"–"}</span>
     </div>`;
   return el;
 }
 function updateFlag(el,g){
-  const f=el.querySelector(".flag.top"),n=S.players;
-  if(n&&g.best.includes(Math.min(n,8))){f.hidden=false;f.className="flag top best";f.innerHTML=`${ic("i-star",11)}Ideální ${ve(n)}`;}
-  else if(g.wp){f.hidden=false;f.className="flag top";f.innerHTML=`${ic("i-bookmark",11)}Chceme`;}
+  const f=el.querySelector(".flag.ftop"),n=S.players;
+  if(n&&g.best.includes(Math.min(n,8))){f.hidden=false;f.className="flag ftop best";f.innerHTML=`${ic("i-star",11)}<span class="lg">Ideální&nbsp;</span>${ve(n)}`;}
+  else if(g.wp){f.hidden=false;f.className="flag ftop";f.innerHTML=`${ic("i-bookmark",11)}Chceme`;}
   else f.hidden=true;
 }
 if(FINE&&!REDUCED){
@@ -1160,7 +1292,7 @@ let raf=0,LIST=[],first=true,prevIds="";
 function schedule(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>render(true));}
 const discovery=()=>!activeList().length&&S.sort==="fit";
 function render(animate){
-  const next=GAMES.filter(g=>matches(g)).sort(SORTS[S.sort].f);
+  const next=GAMES.filter(g=>matches(g)).sort(sortFn(S.sort,S.dir));
   const ids=next.map(g=>g.id).join(",");
   const grid=$("grid");
   const apply=()=>{
@@ -1225,7 +1357,9 @@ function updateUI(){
   $("listHead").classList.toggle("on",S.view==="list"&&!mqMobile.matches);
   $("vGrid").setAttribute("aria-pressed",S.view==="grid");$("vList").setAttribute("aria-pressed",S.view==="list");
   $("listHead").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.s===S.sort));
-  $("sortbar").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.s===S.sort));
+  $("sortbar").querySelectorAll("button").forEach(b=>{const k=b.dataset.s,d=SORTS[k],on=k===S.sort;b.setAttribute("aria-pressed",on);
+    const dir=S.dir||d.d;b.classList.toggle("asc",on&&dir==="asc");b.title=d.v?(on?`${d.l}: ${dir==="asc"?d.up:d.down} (klepnutím otočíte)`:`${d.l}`):d.l;
+    b.setAttribute("aria-label",d.v&&on?`${d.l}, ${dir==="asc"?d.up:d.down}`:d.l);});
   if(q.value!==S.qRaw&&document.activeElement!==q){q.value=S.qRaw;}
   $("qclear").hidden=!q.value;$("keys-hint").hidden=!!q.value;
   const disc=discovery();
@@ -1278,7 +1412,7 @@ function activeList(){
   if(S.cz)L.push(["české hry",()=>S.cz=false]);
   return L;
 }
-function resetAll(){const keep={sort:S.sort,view:S.view};S=Object.assign(DEF(),keep);q.value="";schedule();}
+function resetAll(){const keep={sort:S.sort,dir:S.dir,view:S.view};S=Object.assign(DEF(),keep);q.value="";schedule();}
 
 /* =================== úvod a police =================== */
 function greeting(){const h=new Date().getHours();return h<5?"Ještě jednu partii?":h<11?"Dobré ráno":h<17?"Dobrý den":h<23?"Dobrý večer":"Ještě jednu partii?"}
@@ -1286,7 +1420,7 @@ function renderHero(){
   const total=GAMES.length;
   const status=META.sample?`<span>Náhled s ukázkovými daty</span>`:`<span class="live">Aktualizováno ${esc(dateCz(META.updated))}</span>`;
   $("heroEyebrow").innerHTML=`<span>${greeting()}</span><span class="dot"></span>${status}`;
-  const last=[...GAMES].filter(g=>g.lp).sort(SORTS.recent.f)[0];
+  const last=[...GAMES].filter(g=>g.lp).sort(BY.recent)[0];
   const year=new Date().getFullYear();
   const playedYear=GAMES.filter(g=>g.lp&&g.lp.startsWith(String(year))).length;
   const plays=META.plays||GAMES.reduce((s,g)=>s+g.pl,0);
@@ -1299,73 +1433,96 @@ function renderHero(){
   $("foot").innerHTML=META.sample?"Deskovky · ukázková data pro náhled":`Deskovky · sbírka @${esc(META.user)} z BoardGameGeek · aktualizace každé ráno`;
 }
 const SHELVES=[
-  {k:"recent",t:"Naposledy na stole",p:"Co jste hráli v poslední době",get:()=>GAMES.filter(g=>g.lp).sort(SORTS.recent.f).slice(0,14),sub:g=>`${ic("i-history",12)}${rel(g.lp)}`},
-  {k:"wp",t:"Chceme zahrát",p:"Hry, na které se těšíte",get:()=>GAMES.filter(g=>g.wp).sort(SORTS.rating.f),sub:g=>`${ic("i-players",12)}${pTxt(g)} · ${tTxt(g)}`},
+  {k:"recent",t:"Naposledy na stole",p:"Co jste hráli v poslední době",get:()=>GAMES.filter(g=>g.lp).sort(BY.recent).slice(0,14),sub:g=>`${ic("i-history",12)}${rel(g.lp)}`},
+  {k:"wp",t:"Chceme zahrát",p:"Hry, na které se těšíte",get:()=>GAMES.filter(g=>g.wp).sort(BY.rating),sub:g=>`${ic("i-players",12)}${pTxt(g)} · ${tTxt(g)}`},
   {k:"gems",t:"Zapomenuté poklady",p:"Skvělé hry, které dlouho ležely na polici",get:()=>GAMES.filter(g=>g.r>=7.5&&(g.pl===0||days(g.lp)>=LONG_DAYS)).sort((a,b)=>b.r-a.r).slice(0,14),sub:g=>g.pl?`${ic("i-history",12)}${rel(g.lp)}`:`${ic("i-sparkle",12)}ještě nehráno`},
-  {k:"quick",t:"Na rychlovku",p:"Do půl hodiny a bez dlouhého vysvětlování",get:()=>GAMES.filter(g=>g.tt&&g.tt<=30&&g.w<2.5).sort(SORTS.rating.f).slice(0,14),sub:g=>`${ic("i-clock",12)}${tTxt(g)}`},
+  {k:"quick",t:"Na rychlovku",p:"Do půl hodiny a bez dlouhého vysvětlování",get:()=>GAMES.filter(g=>g.tt&&g.tt<=30&&g.w<2.5).sort(BY.rating).slice(0,14),sub:g=>`${ic("i-clock",12)}${tTxt(g)}`},
 ];
 const SHELF_LISTS={};
 function renderShelves(){
   $("shelves").innerHTML=SHELVES.map(s=>{const L=s.get();if(L.length<3)return"";SHELF_LISTS[s.k]=L;
     return `<section aria-label="${esc(s.t)}"><div class="shelf-h"><div><h3>${esc(s.t)}</h3><p>${esc(s.p)}</p></div><div class="shelf-nav"><button class="icon-btn sm" type="button" data-scroll="-1" aria-label="Posunout zpět">${ic("i-chev-l")}</button><button class="icon-btn sm" type="button" data-scroll="1" aria-label="Posunout dál">${ic("i-chev-r")}</button></div></div>
-      <div class="shelf-row">${L.map(g=>`<button type="button" class="mini-card" data-open="${g.id}" data-list="${s.k}">${thumbHTML(g)}<strong>${esc(g.n)}</strong><small>${s.sub(g)}</small></button>`).join("")}</div></section>`}).join("")+yearChart();
+      <div class="shelf-row">${L.map(g=>`<button type="button" class="mini-card" data-open="${g.id}" data-list="${s.k}">${thumbHTML(g)}<strong>${esc(g.n)}</strong><small>${s.sub(g)}</small></button>`).join("")}</div></section>`}).join("")+recsSection()+yearChart();
 }
 
 
 /* =================== vějíř, novinka, graf =================== */
 function renderFan(){
   const withImg=GAMES.filter(g=>g.cov||g.th||g.img);
-  const L=[...(withImg.length>=3?withImg:GAMES)].sort(SORTS.rating.f).slice(0,3);
+  const L=[...(withImg.length>=3?withImg:GAMES)].sort(BY.rating).slice(0,3);
   SHELF_LISTS.fan=L;
   $("fan").innerHTML=L.map((g,i)=>{const src=g.cov||g.th||g.img;return `<button type="button" class="fan-card" style="--i:${i};--c:${g.col}" data-open="${g.id}" data-list="fan" aria-label="${esc(g.n)}, hodnocení ${nf1(g.r)}">${src?`<img src="${esc(src)}" alt="" decoding="async">`:`<span>${esc(initials(g.n))}</span>`}<b class="rk">${nf1(g.r)}</b></button>`}).join("");
 }
 async function loadNews(){
   let n=null;
-  if(META.sample) n={title:"Tady se každý týden objeví nejdůležitější zpráva ze světa deskovek",source:"ukázka v náhledu",date:new Date().toISOString(),url:""};
+  if(META.sample) n={title:"Tady se každý den objeví nejdůležitější zpráva ze světa deskovek za poslední týden",perex:"Pod titulkem bude krátký úvod článku v češtině a odkaz na původní zdroj.",source:"ukázka v náhledu",date:new Date().toISOString(),url:""};
   else try{const r=await fetch("data/news.json",{cache:"no-cache"});if(r.ok)n=await r.json();}catch{}
-  if(!n||!n.title||days((n.date||"").slice(0,10))>9)return;
+  if(!n||!n.title||days((n.date||"").slice(0,10))>9){$("news").hidden=true;return;}
   const el=$("news");el.hidden=false;
   if(n.url)el.href=n.url;else el.removeAttribute("href");
-  el.innerHTML=`<span class="n-ic">${ic("i-news",20)}</span><span class="eyebrow">Ze světa deskovek · tento týden</span><strong>${esc(n.titleCz||n.title)}</strong><span class="news-src">Zdroj: ${esc(n.source)}${n.date?` · ${rel(n.date.slice(0,10))}`:""}${!n.titleCz&&!META.sample?" · anglicky":""}</span>${n.url?`<span class="n-go">${ic("i-ext",18)}</span>`:""}`;
+  el.innerHTML=`<span class="n-ic">${ic("i-news",20)}</span><span class="eyebrow">Ze světa deskovek · tento týden</span><strong>${esc(n.titleCz||n.title)}</strong>${(n.perexCz||n.perex)?`<span class="news-perex">${esc(n.perexCz||n.perex)}</span>`:""}<span class="news-src">Zdroj: ${esc(n.source)}${n.date?` · ${rel(n.date.slice(0,10))}`:""}${!n.titleCz&&!META.sample?" · anglicky, překlad doběhne při další aktualizaci":""}</span>${n.url?`<span class="n-go">${ic("i-ext",18)}</span>`:""}`;
   el.addEventListener("click",()=>haptic("tap"));
 }
 let YBINS=[];
+const hodin=h=>plural(h,"hodina","hodiny","hodin"),dni=d=>plural(d,"den","dny","dní");
+function durTxt(min){const h=Math.round(min/60);if(h<48)return`${h} ${hodin(h)}`;const d=Math.floor(h/24),r=h%24;return`${d} ${dni(d)}${r?` a ${r} ${hodin(r)}`:""}`;}
+function funFacts(){
+  const mid=g=>g.t[1]?(g.t[0]+g.t[1])/2:0;
+  const withT=GAMES.filter(g=>mid(g));if(!withT.length)return"";
+  const all=withT.reduce((s,g)=>s+mid(g),0);
+  const played=GAMES.reduce((s,g)=>s+(g.pl||0)*mid(g),0);
+  const longest=[...withT].sort((a,b)=>b.t[1]-a.t[1])[0];
+  const avg=Math.round(all/withT.length);
+  const F=[
+    {k:"Celá sbírka, každá hra jednou",v:durTxt(all),s:`${withT.length} ${her(withT.length)} po sobě bez přestávky`},
+    played?{k:"Odehráli jste podle zápisů",v:durTxt(played),s:`${GAMES.reduce((s,g)=>s+(g.pl||0),0)} partií`}:null,
+    {k:"Průměrná partie",v:`${avg} min`,s:"podle doby uvedené na BGG"},
+    {k:"Nejdelší hra",v:esc(longest.n),s:tTxt(longest),long:1},
+  ].filter(Boolean);
+  return `<div class="facts-row">${F.map(f=>`<div class="fact"><span class="stat-k">${f.k}</span><b class="${f.long?"fl":""}">${f.v}</b><small>${f.s}</small></div>`).join("")}</div>`;
+}
 function yearChart(){
-  const gs=GAMES.filter(g=>g.y);if(gs.length<5)return"";
-  const ys=gs.map(g=>g.y),maxY=Math.max(...ys),minY=Math.min(...ys);
-  const Y0=Math.max(minY,maxY-34);
+  const gs=GAMES.filter(g=>g.y>1000&&g.y<3000);if(gs.length<3)return"";
+  const ys=gs.map(g=>g.y),maxY=Math.max(...ys),minY=Math.min(...ys),span=maxY-minY+1;
+  const MAXB=40,W=[1,2,5,10,20,25,50,100].find(w=>Math.ceil((maxY-Math.floor(minY/w)*w+1)/w)<=MAXB)||100;
+  const start=W===1?minY:Math.floor(minY/W)*W;
   YBINS=[];
-  const olds=gs.filter(g=>g.y<Y0);
-  if(olds.length)YBINS.push({l:"dřív",tip:`Před rokem ${Y0}`,lo:minY,hi:Y0-1,g:olds});
-  for(let y=Y0;y<=maxY;y++)YBINS.push({l:String(y),tip:String(y),lo:y,hi:y,g:gs.filter(g=>g.y===y)});
-  const max=Math.max(...YBINS.map(b=>b.g.length));
-  const step=max<=5?1:max<=10?2:max<=25?5:10,top=Math.ceil(max/step)*step;
-  const PIV=2010,after=gs.filter(g=>g.y>=PIV).length,pct=Math.round(after/gs.length*100);
-  const oldest=[...gs].sort((a,b)=>a.y-b.y)[0],newest=[...gs].sort((a,b)=>b.y-a.y)[0];
-  const peak=YBINS.filter(b=>b.lo===b.hi).sort((a,b)=>b.g.length-a.g.length)[0];
-  const n=YBINS.length,pi=YBINS.findIndex(b=>b.lo===PIV);
+  for(let lo=start;lo<=maxY;lo+=W){const hi=lo+W-1;YBINS.push({lo,hi,l:W===1?String(lo):String(lo),tip:W===1?String(lo):`${lo}–${hi}`,g:gs.filter(g=>g.y>=lo&&g.y<=hi)});}
+  const n=YBINS.length,max=Math.max(...YBINS.map(b=>b.g.length));
+  const step=max<=5?1:max<=10?2:max<=25?5:max<=60?10:20,top=Math.ceil(max/step)*step;
   const ticks=[];for(let v=0;v<=top;v+=step)ticks.push(v);
-  const showX=(b,i)=>i===0||i===n-1||(b.lo===b.hi&&b.lo%5===0&&i>1&&i<n-2);
+  const avg=Math.round(ys.reduce((a,b)=>a+b,0)/ys.length);
+  const sorted=[...ys].sort((a,b)=>a-b),median=sorted[Math.floor(sorted.length/2)];
+  const oldest=[...gs].sort((a,b)=>a.y-b.y||b.r-a.r)[0],newest=[...gs].sort((a,b)=>b.y-a.y||b.r-a.r)[0];
+  const peak=[...YBINS].sort((a,b)=>b.g.length-a.g.length)[0];
+  const every=Math.max(1,Math.ceil(n/(mqMobile.matches?6:10)));
+  const showX=i=>i===0||i===n-1||(i%every===0&&n-1-i>=every/2);
+  const unit=W===1?"rok":`${W} let`;
   return `<section class="ychart glass" aria-labelledby="ych">
-    <div class="yc-head"><div><h3 id="ych">Kdy vyšly naše hry</h3><p>${gs.length} ${her(gs.length)} podle roku vydání. Nejstarší je ${esc(oldest.n)} (${oldest.y}), nejnovější ${esc(newest.n)} (${newest.y})${peak&&peak.g.length>1?`, nejvíc her je z roku ${peak.lo} (${peak.g.length})`:""}. Klepnutím na sloupec zobrazíte hry z daného roku.</p></div>
-      <div class="yc-big"><b>${pct} %</b><span>vyšlo v roce ${PIV} nebo později</span></div></div>
-    <div class="yc-legend" aria-hidden="true"><span><i class="old"></i>do roku ${PIV-1}</span><span><i></i>od roku ${PIV}</span></div>
+    <div class="yc-head"><div><h3 id="ych">Kdy vyšly naše hry</h3>
+      <p>${gs.length} ${her(gs.length)} podle roku vydání${W>1?`, jeden sloupec = ${W} let`:""}. Nejvíc her je z ${W===1?`roku ${peak.lo}`:`let ${peak.tip}`} (${peak.g.length}). Klepnutím na sloupec zobrazíte hry z daného období.</p></div>
+      <div class="yc-big"><b>${avg}</b><span>průměrný rok vydání</span></div></div>
+    <div class="yc-stats">
+      <span><em>Nejstarší</em><b>${esc(oldest.n)}</b><small>${oldest.y}</small></span>
+      <span><em>Nejnovější</em><b>${esc(newest.n)}</b><small>${newest.y}</small></span>
+      <span><em>Polovina sbírky</em><b>od roku ${median}</b><small>medián</small></span>
+    </div>
     <div class="yc-body">
       <div class="yc-y" aria-hidden="true">${ticks.map(v=>`<span style="bottom:${v/top*100}%">${v}</span>`).join("")}</div>
       <div class="yc-wrap" id="ycWrap">
         <div class="yc-grid" aria-hidden="true">${ticks.map(v=>`<i class="${v?"":"base"}" style="bottom:${v/top*100}%"></i>`).join("")}</div>
-        <div class="yc-plot" style="--n:${n}">${YBINS.map((b,i)=>`<button type="button" class="yb${b.lo>=PIV?" new":""}${b.g.length?"":" zero"}" data-yb="${i}" style="--h:${b.g.length/top*100}%;--k:${i}" aria-label="${esc(b.tip)}: ${b.g.length} ${her(b.g.length)}" ${b.g.length?"":'tabindex="-1" aria-hidden="true"'}><i></i></button>`).join("")}</div>
-        ${pi>0?`<div class="yc-pivot" style="left:calc(${pi} / ${n} * 100% - 1px)"><b>${PIV}</b></div>`:""}
+        <div class="yc-plot" style="--n:${n}">${YBINS.map((b,i)=>`<button type="button" class="yb${b.g.length?"":" zero"}" data-yb="${i}" style="--h:${b.g.length/top*100}%;--k:${i}" aria-label="${esc(b.tip)}: ${b.g.length} ${her(b.g.length)}" ${b.g.length?"":'tabindex="-1" aria-hidden="true"'}><i></i></button>`).join("")}</div>
         <div class="yc-tip" id="ytip" hidden></div>
       </div>
     </div>
-    <div class="yc-x" style="--n:${n}" aria-hidden="true">${YBINS.map((b,i)=>`<span>${showX(b,i)?b.l:""}</span>`).join("")}</div>
-    <table class="sr"><caption>Počet her podle roku vydání</caption><tr><th>Rok</th><th>Počet her</th></tr>${YBINS.filter(b=>b.g.length).map(b=>`<tr><td>${esc(b.tip)}</td><td>${b.g.length}</td></tr>`).join("")}</table>
+    <div class="yc-x" style="--n:${n}" aria-hidden="true">${YBINS.map((b,i)=>`<span>${showX(i)?b.l:""}</span>`).join("")}</div>
+    <table class="sr"><caption>Počet her podle roku vydání</caption><tr><th>Období</th><th>Počet her</th></tr>${YBINS.filter(b=>b.g.length).map(b=>`<tr><td>${esc(b.tip)}</td><td>${b.g.length}</td></tr>`).join("")}</table>
+    ${funFacts()}
   </section>`;
 }
 function showTip(btn){
   const tip=$("ytip");if(!tip||!btn)return;const b=YBINS[+btn.dataset.yb];if(!b||!b.g.length){tip.hidden=true;return;}
-  const names=[...b.g].sort(SORTS.rating.f).slice(0,3).map(g=>g.n);
+  const names=[...b.g].sort(BY.rating).slice(0,3).map(g=>g.n);
   tip.innerHTML=`<b>${esc(b.tip)}</b> · ${b.g.length} ${her(b.g.length)}<small>${esc(names.join(", "))}${b.g.length>3?"…":""}</small>`;
   const wrap=$("ycWrap").getBoundingClientRect(),r=btn.getBoundingClientRect(),bar=btn.querySelector("i").getBoundingClientRect();
   tip.hidden=false;const w=tip.offsetWidth;let x=r.left+r.width/2-wrap.left;x=Math.max(w/2-26,Math.min(wrap.width-w/2,x));
@@ -1375,7 +1532,88 @@ document.addEventListener("pointerover",e=>{const b=e.target.closest?.(".yb");if
 document.addEventListener("pointerout",e=>{if(e.target.closest?.(".yb")&&!e.relatedTarget?.closest?.(".yb")){const t=$("ytip");if(t)t.hidden=true;}});
 document.addEventListener("focusin",e=>{const b=e.target.closest?.(".yb");if(b)showTip(b);});
 document.addEventListener("click",e=>{const b=e.target.closest(".yb");if(!b)return;const bin=YBINS[+b.dataset.yb];if(!bin||!bin.g.length)return;
-  haptic("select");S.year=[Math.max(YMIN,bin.lo),Math.min(YMAX,bin.hi)];schedule();scrollToGrid();toast(`${bin.tip}: ${bin.g.length} ${her(bin.g.length)}`);});
+  haptic("select");S.year=[Math.max(YMIN,bin.lo),Math.min(YMAX,bin.hi)];$("adv").open=true;schedule();scrollToGrid();toast(`${bin.tip}: ${bin.g.length} ${her(bin.g.length)}`);});
+
+
+/* =================== seznamy: sbírka, wishlist, tipy ke koupi =================== */
+let WISH=[],RECS=[];
+const lsGet=k=>{try{return localStorage.getItem(k)}catch{return null}},lsSet=(k,v)=>{try{v===""||v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch{}};
+const money=v=>Math.round(v).toLocaleString("cs-CZ")+" Kč";
+const priceOf=g=>{const l=lsGet("dk-price-"+g.id);if(l!==null&&l!=="")return +l;return g.price&&(!g.cur||g.cur==="CZK")?+g.price:null;};
+async function loadExtras(){
+  if(META.sample){
+    WISH=[{id:28720,n:"Brass: Lancashire",y:2007,pr:2,prl:"Moc chci",r:8.2,rk:20,note:"Až bude dotisk"},{id:124361,n:"Concordia",y:2013,pr:3,prl:"Chtěl bych",r:8.1,rk:28,note:""},{id:220308,n:"Gaia Project",y:2017,pr:4,prl:"Zvažuji",r:8.4,rk:12,note:""}];
+    RECS=[{id:124361,n:"Concordia",y:2013,p:[2,5],t:[100,100],w:3.0,r:8.1,rk:28,wish:true,why:["Podobá se hře Brass: Birmingham, kterou máte","Mechaniky, které hrajete: správa karet v ruce","Ukázkový tip, skutečné tipy se počítají z vaší sbírky"]},
+      {id:164928,n:"Orléans",y:2014,p:[2,4],t:[90,90],w:3.05,r:8.0,rk:47,why:["Podobá se hře Great Western Trail, kterou máte","Mechaniky, které hrajete: stavba balíčku","47. místo v žebříčku BGG"]},
+      {id:183394,n:"Viticulture Essential Edition",y:2015,p:[1,6],t:[45,90],w:2.9,r:8.0,rk:30,why:["Podobá se hře Everdell, kterou máte","Mechaniky, které hrajete: rozmisťování dělníků","30. místo v žebříčku BGG"]}];
+  } else {
+    const get=async f=>{try{const r=await fetch("data/"+f,{cache:"no-cache"});if(r.ok)return await r.json();}catch{}return null;};
+    const [w,r]=await Promise.all([get("wishlist.json"),get("recs.json")]);
+    WISH=Array.isArray(w?.items)?w.items.filter(x=>x&&+x.id&&!BYID.has(+x.id)):[];
+    RECS=Array.isArray(r?.items)?r.items.filter(x=>x&&+x.id&&!BYID.has(+x.id)):[];
+  }
+  [...WISH,...RECS].forEach(x=>{x.n=String(x.n||"Neznámá hra");x.col=x.col||`hsl(${HUES[x.id%HUES.length]} 40% 30%)`;x.p=Array.isArray(x.p)?x.p:[0,0];x.t=Array.isArray(x.t)?x.t:[+x.t||0,+x.t||0];x.why=Array.isArray(x.why)?x.why:[];});
+  renderShelves();updateUI();
+}
+function recCard(x,i){
+  return `<article class="rec glass" style="--i:${i}">
+    <div class="rec-top">${thumbHTML({...x,cov:"",img:""})}<div><h4>${esc(x.n)}</h4><div class="facts">${x.p[1]?`<span>${ic("i-players",13)}<b>${x.p[0]===x.p[1]?x.p[0]:x.p[0]+"–"+x.p[1]}</b></span>`:""}${x.t[1]?`<span>${ic("i-clock",13)}<b>${x.t[0]===x.t[1]?x.t[0]:x.t[0]+"–"+x.t[1]} min</b></span>`:""}${x.w?`<span>${esc(wLabel(x.w))}</span>`:""}</div></div></div>
+    ${x.wish?`<span class="rec-wish">${ic("i-bookmark",12)}Už je na wishlistu</span>`:""}
+    <ul class="why">${x.why.slice(0,3).map(w=>`<li>${ic("i-check",16)}<span>${esc(w)}</span></li>`).join("")}</ul>
+    <div class="rec-foot"><span class="tnum">${x.r?`BGG ${nf1(x.r)}`:""}${x.rk?` · ${x.rk}. místo`:""}</span><a class="btn sm" href="https://boardgamegeek.com/boardgame/${x.id}" target="_blank" rel="noopener">Na BGG ${ic("i-ext",13)}</a></div>
+  </article>`;
+}
+function recsSection(){
+  if(!RECS.length)return"";
+  return `<section aria-labelledby="rch"><div class="shelf-h"><div><h3 id="rch">Doporučujeme ke koupi</h3><p>Kvalitní hry, které nemáte a podobají se tomu, co hrajete. Mění se podle vaší sbírky a partií.</p></div></div>
+    <div class="recs">${RECS.slice(0,3).map(recCard).join("")}</div></section>`;
+}
+const listsD=$("lists");let LT="col",LSORT="acq";
+function listsHTML(){
+  const tabs=[["col","Sbírka",GAMES.length],["wish","Wishlist",WISH.length],["buy","Ke koupi",RECS.length]];
+  let body="";
+  if(LT==="col"){
+    const priced=GAMES.filter(g=>priceOf(g)!=null),sum=priced.reduce((a,g)=>a+priceOf(g),0);
+    const yr=String(new Date().getFullYear()),thisYear=GAMES.filter(g=>g.acq.startsWith(yr)&&!g.acqX).length;
+    const L=[...GAMES].sort(LSORT==="name"?sortFn("name","asc"):LSORT==="price"?((a,b)=>(priceOf(b)??-1)-(priceOf(a)??-1)||a.n.localeCompare(b.n,"cs")):sortFn("acq","desc"));
+    body=`<div class="l-sum"><div><span class="stat-k">Ve sbírce</span><b>${GAMES.length}</b><small>${her(GAMES.length)}</small></div>
+      <div><span class="stat-k">Hodnota sbírky</span><b>${priced.length?money(sum):"–"}</b><small>${priced.length?`cena známá u ${priced.length} z ${GAMES.length}`:"zatím bez cen"}</small></div>
+      <div><span class="stat-k">Přibylo letos</span><b>${thisYear}</b><small>${plural(thisYear,"nová hra","nové hry","nových her")}</small></div></div>
+      <div class="l-tools"><div class="hseg" role="radiogroup" aria-label="Řazení seznamu">${[["acq","Nejnovější"],["name","Název"],["price","Cena"]].map(([k,l])=>`<button type="button" data-ls="${k}" role="radio" aria-checked="${LSORT===k}">${l}</button>`).join("")}</div></div>
+      <div class="l-list">${L.map(g=>{const pr=priceOf(g),loc=lsGet("dk-price-"+g.id);return `<div class="lrow">${thumbHTML(g)}
+        <button type="button" class="l-name" data-lopen="${g.id}"><strong>${esc(g.n)}</strong><small>${g.acq?(g.acqX?`ve sbírce asi od ${dateCz(g.acq)}`:`přidáno ${dateCz(g.acq)}`):"datum přidání neznámé"}</small></button>
+        <label class="l-price"><span class="sr">Cena hry ${esc(g.n)}</span><input type="text" inputmode="decimal" id="pr-${g.id}" data-price="${g.id}" value="${pr!=null?Math.round(pr):""}" placeholder="cena" autocomplete="off"><span>Kč</span></label></div>`}).join("")}</div>
+      <p class="l-note">Datum přidání si web pamatuje sám od chvíle, kdy hru poprvé uvidí ve sbírce na BGG. Ceny, které sem napíšete, se ukládají jen v tomto zařízení. Aby je viděli všichni, zadejte cenu na BGG u hry v kolekci (Private Info, Price Paid).</p>`;
+  } else if(LT==="wish"){
+    const sum=WISH.reduce((a,x)=>a+(+lsGet("dk-wprice-"+x.id)||0),0);
+    body=WISH.length?`<div class="l-sum"><div><span class="stat-k">Na wishlistu</span><b>${WISH.length}</b><small>${her(WISH.length)}</small></div><div><span class="stat-k">Odhad nákupu</span><b>${sum?money(sum):"–"}</b><small>součet zadaných cen</small></div></div>
+      <div class="l-list">${WISH.map(x=>`<div class="lrow">${thumbHTML({...x,cov:"",img:""})}
+        <a class="l-name" href="https://boardgamegeek.com/boardgame/${x.id}" target="_blank" rel="noopener"><strong>${esc(x.n)}</strong><small>${x.prl?`<span class="prio p${x.pr}">${esc(x.prl)}</span>`:""}${x.r?` BGG ${nf1(x.r)}`:""}${x.rk?` · ${x.rk}. místo`:""}${x.note?` · ${esc(x.note)}`:""}</small></a>
+        <label class="l-price"><span class="sr">Cena hry ${esc(x.n)}</span><input type="text" inputmode="decimal" id="wp-${x.id}" data-wprice="${x.id}" value="${lsGet("dk-wprice-"+x.id)||""}" placeholder="cena" autocomplete="off"><span>Kč</span></label></div>`).join("")}</div>
+      <p class="l-note">Wishlist se každý den načítá z BGG (hry označené Wishlist). Ceny se ukládají jen v tomto zařízení.</p>`
+      :`<div class="empty"><h3>Wishlist je prázdný</h3><p>Na BGG u hry klikněte na Wishlist. Tady se objeví při další aktualizaci.</p></div>`;
+  } else {
+    body=RECS.length?`<div class="recs all">${RECS.map(recCard).join("")}</div>`:`<div class="empty"><h3>Tipy se připravují</h3><p>Doporučení se spočítají při ranní aktualizaci podle vaší sbírky a partií.</p></div>`;
+  }
+  return `<div class="n-wrap"><div class="l-bar"><div class="l-tabs" role="tablist">${tabs.map(([k,l,c])=>`<button type="button" role="tab" data-lt="${k}" aria-selected="${LT===k}">${l}<small>${c}</small></button>`).join("")}</div><button class="icon-btn sm" type="button" data-lclose aria-label="Zavřít">${ic("i-x")}</button></div><div class="l-body" id="lBody">${body}</div></div>`;
+}
+function renderLists(keep){const b=$("lBody"),y=keep&&b?b.scrollTop:0;listsD.innerHTML=listsHTML();if(keep)$("lBody").scrollTop=y;}
+function openLists(tab){if(tab)LT=tab;renderLists();if(!listsD.open){haptic("tap");listsD.showModal();if(!FINE)document.activeElement?.blur?.();ovOpen("lists",()=>closeDialog(listsD));}}
+listsD.addEventListener("cancel",e=>{e.preventDefault();ovClose("lists");});
+listsD.addEventListener("click",e=>{
+  if(e.target===listsD||e.target.closest("[data-lclose]")){haptic("close");return ovClose("lists");}
+  const t=e.target.closest("[data-lt]");if(t){LT=t.dataset.lt;haptic("tick");return renderLists();}
+  const so=e.target.closest("[data-ls]");if(so){LSORT=so.dataset.ls;haptic("tick");return renderLists(true);}
+  const o=e.target.closest("[data-lopen]");if(o)return openDetail(o.dataset.lopen,[...GAMES].sort(sortFn("acq","desc")));
+  if(e.target.closest("a"))haptic("tap");
+});
+listsD.addEventListener("change",e=>{
+  const i=e.target.closest("[data-price],[data-wprice]");if(!i)return;
+  const v=i.value.replace(/\s/g,"").replace(",",".").replace(/[^\d.]/g,"");const n=v?Math.round(+v):"";
+  if(i.dataset.price)lsSet("dk-price-"+i.dataset.price,n===""?"":String(n));else lsSet("dk-wprice-"+i.dataset.wprice,n===""?"":String(n));
+  haptic("confirm");renderLists(true);
+});
+$("listsBtn").addEventListener("click",()=>openLists());
 
 /* =================== překryvné vrstvy a tlačítko Zpět =================== */
 let HIST=false;try{HIST=window.top===window}catch{}
@@ -1476,7 +1714,7 @@ dlg.addEventListener("click",e=>{
   if(e.target.closest("a.btn,.linkbtn"))haptic("tap");
   const s=e.target.closest("[data-sim]");if(s){const g=BYID.get(+s.dataset.sim);DET={list:[g,...similar(g)],i:0};fillDetail(g);(mqMobile.matches?dlg.querySelector(".d-wrap"):$("dScroll")).scrollTop=0;return;}
   const fd=e.target.closest("[data-fdes],[data-fmech]");
-  if(fd){const k=fd.dataset.fdes?"des":"mech";const v=fd.dataset.fdes||fd.dataset.fmech;S=Object.assign(DEF(),{sort:S.sort,view:S.view});S[k].add(v);$("adv").open=true;ovClose("detail");schedule();toast(`Filtr: ${v}`);scrollToGrid();return;}
+  if(fd){const k=fd.dataset.fdes?"des":"mech";const v=fd.dataset.fdes||fd.dataset.fmech;S=Object.assign(DEF(),{sort:S.sort,dir:S.dir,view:S.view});S[k].add(v);$("adv").open=true;ovClose("detail");schedule();toast(`Filtr: ${v}`);scrollToGrid();return;}
   if(e.target.closest("[data-sharegame]")){const g=DET.list[DET.i];copyLink(pageURL("")+"#hra-"+g.id,"Odkaz na hru je zkopírovaný");}
 });
 
@@ -1563,7 +1801,7 @@ nightD.addEventListener("click",e=>{
   if(t.closest("[data-nrand]")){const b=t.closest("[data-nrand]");b.classList.remove("rolling");void b.offsetWidth;b.classList.add("rolling");haptic("roll");
     const pick=W.ranked[Math.floor(Math.random()*W.ranked.length)].g;setTimeout(()=>openDetail(pick.id,W.ranked.map(r=>r.g)),REDUCED?0:700);return;}
   if(t.closest("[data-napply]")){
-    S=Object.assign(DEF(),{sort:"fit",view:S.view});S.players=W.players;
+    S=Object.assign(DEF(),{sort:"fit",dir:"",view:S.view});S.players=W.players;
     if(W.time&&W.time!==999)S.time=[0,W.time];
     if(W.mood==="chill")S.weight=[1,2.4];else if(W.mood==="brain")S.weight=[2.6,5];else if(W.mood==="coop")S.styles.add("Kooperativní");else if(W.mood==="party"&&STYLES.includes("Party"))S.styles.add("Party");
     ovClose("night");schedule();scrollToGrid();
@@ -1589,7 +1827,7 @@ function stateToQuery(){
   if(S.styles.size)p.set("styl",[...S.styles].join("|"));if(S.themes.size)p.set("tema",[...S.themes].join("|"));
   if(S.des.size)p.set("autor",[...S.des].join("|"));if(S.mech.size)p.set("mech",[...S.mech].join("|"));
   ["cz","wp","long","never"].forEach(k=>{if(S[k])p.set(k,"1")});
-  if(S.sort!=="fit")p.set("razeni",S.sort);
+  if(S.sort!=="fit")p.set("razeni",S.sort+(S.dir&&S.dir!==SORTS[S.sort].d?"-"+S.dir:""));
   return p.toString();
 }
 function syncURL(){if(META.sample||!HIST)return;try{const s=stateToQuery();history.replaceState(history.state,"",location.pathname+(s?"?"+s:"")+location.hash)}catch{}}
@@ -1599,10 +1837,12 @@ function readURL(){
   const set=(k,all)=>new Set((p.get(k)||"").split("|").filter(x=>all.includes(x)));
   if(p.get("q")){S.qRaw=p.get("q");S.q=norm(S.qRaw);}
   S.players=+p.get("h")||0;S.rec=p.get("dop")==="1";
-  S.time=pair("cas",S.time);S.weight=pair("obt",S.weight);S.year=pair("rok",S.year);S.rmin=+p.get("bgg")||0;S.age=+p.get("vek")||0;
+  S.time=pair("cas",S.time);S.weight=pair("obt",S.weight);S.year=pair("rok",S.year);
+  S.year=[Math.max(YMIN,Math.min(YMAX,S.year[0])),Math.min(YMAX,Math.max(YMIN,S.year[1]))];if(S.year[0]>S.year[1])S.year=[YMIN,YMAX];
+  if(![0,1,2,3,4,5,6,7,8].includes(S.players))S.players=0;S.rmin=+p.get("bgg")||0;S.age=+p.get("vek")||0;
   S.styles=set("styl",STYLES);S.themes=set("tema",THEMES);S.des=set("autor",DESIGNERS);S.mech=set("mech",MECHS);
   ["cz","wp","long","never"].forEach(k=>S[k]=p.get(k)==="1");
-  if(SORTS[p.get("razeni")])S.sort=p.get("razeni");
+  {const [k,d]=(p.get("razeni")||"").split("-");if(SORTS[k]){S.sort=k;S.dir=d==="asc"||d==="desc"?d:(SORTS[k].d||"");}}
 }
 function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2400);}
 function copyLink(url,msg){const fb=()=>toast("Odkaz: "+url);try{navigator.clipboard.writeText(url).then(()=>{toast(msg);haptic("confirm")},fb)}catch{fb()}}
@@ -1626,11 +1866,11 @@ function scrollToGrid(){const top=$("main").getBoundingClientRect().top+scrollY-
 document.addEventListener("keydown",e=>{
   const typing=/INPUT|SELECT|TEXTAREA/.test(document.activeElement?.tagName);
   if(dlg.open&&!typing){if(e.key==="ArrowRight"){e.preventDefault();navDetail(1);}if(e.key==="ArrowLeft"){e.preventDefault();navDetail(-1);}return;}
-  if(nightD.open||$("keys").open)return;
+  if(nightD.open||$("keys").open||listsD.open)return;
   if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"||(e.key==="/"&&!typing)){e.preventDefault();q.focus();q.select();return;}
   if(typing||e.ctrlKey||e.metaKey||e.altKey)return;
   const k=e.key.toLowerCase();
-  if(k==="r")roll();else if(k==="n")openNight();
+  if(k==="r")roll();else if(k==="n")openNight();else if(k==="s")openLists();
   else if(k==="g"){S.view="grid";store.set("hp-view","grid");render(false);}
   else if(k==="l"&&!mqMobile.matches){S.view="list";store.set("hp-view","list");render(false);}
   else if(e.key==="?")openKeys();
@@ -1648,7 +1888,7 @@ function buildStatic(){
   $("weightChips").innerHTML=WEIGHT_CH.map(t=>`<button type="button" class="schip">${t.l}<small>${t.s}</small></button>`).join("");
   $("ratingChips").innerHTML=RATING_CH.map(t=>`<button type="button" class="schip">${t.l}</button>`).join("");
   $("ageChips").innerHTML=AGE_CH.map(t=>`<button type="button" class="schip">${t.l}</button>`).join("");
-  $("sortbar").innerHTML=`<span class="sort-lab">Řadit</span>`+Object.entries(SORTS).map(([k,v])=>`<button type="button" class="sort-chip" data-s="${k}" aria-pressed="false">${v.l}</button>`).join("");
+  $("sortbar").innerHTML=`<span class="sort-lab">Řadit</span>`+Object.entries(SORTS).filter(([k,v])=>!v.hidden&&(k!=="acq"||GAMES.some(g=>g.acq))&&(k!=="rank"||GAMES.some(g=>g.rk))).map(([k,v])=>`<button type="button" class="sort-chip" data-s="${k}" aria-pressed="false">${v.l}${v.v?`<svg class="dir" width="14" height="14" aria-hidden="true"><use href="#i-arrow"/></svg>`:""}</button>`).join("");
   $("quick").innerHTML=QUICK.filter(x=>x.st?STYLES.includes(x.st):(!x.need||x.need())).map(x=>`<button type="button" class="qchip" data-k="${x.k}" aria-pressed="false">${ic(x.i,15)}${x.l}</button>`).join("");
 }
 $("seats").addEventListener("click",e=>{const b=e.target.closest(".seat");if(!b)return;const n=+b.dataset.n;S.players=S.players===n?0:n;if(!S.players)S.rec=false;haptic("tick");schedule();});
@@ -1666,8 +1906,12 @@ $("moreThemes").addEventListener("click",()=>{open.themes=!open.themes;renderFac
 $("desSearch").addEventListener("input",renderFacets);$("mechSearch").addEventListener("input",renderFacets);
 $("adv").addEventListener("toggle",renderFacets);
 [["t-wp","wp"],["t-long","long"],["t-never","never"],["t-cz","cz"]].forEach(([id,k])=>$(id).addEventListener("change",e=>{S[k]=e.target.checked;haptic("tick");if(k==="long"&&S.long)S.never=false;if(k==="never"&&S.never)S.long=false;schedule();}));
-$("sortbar").addEventListener("click",e=>{const b=e.target.closest("[data-s]");if(!b||S.sort===b.dataset.s)return;S.sort=b.dataset.s;haptic("tick");schedule();b.scrollIntoView({block:"nearest",inline:"center",behavior:REDUCED?"auto":"smooth"});});
-$("listHead").addEventListener("click",e=>{const b=e.target.closest("button");if(b){S.sort=b.dataset.s;schedule();}});
+function setSort(k){const d=SORTS[k];if(!d)return;
+  if(S.sort===k){if(!d.v)return;S.dir=(S.dir||d.d)==="asc"?"desc":"asc";}else{S.sort=k;S.dir=d.d||"";}
+  haptic("tick");schedule();
+  const lab=d.v?`${d.l}: ${S.dir==="asc"?d.up:d.down}`:d.l;const live=$("sortLive");if(live)live.textContent=`Řazení ${lab}`;}
+$("sortbar").addEventListener("click",e=>{const b=e.target.closest("[data-s]");if(!b)return;setSort(b.dataset.s);b.scrollIntoView({block:"nearest",inline:"center",behavior:REDUCED?"auto":"smooth"});});
+$("listHead").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setSort(b.dataset.s);});
 $("vGrid").addEventListener("click",()=>{S.view="grid";store.set("hp-view","grid");render(false);});
 $("vList").addEventListener("click",()=>{S.view="list";store.set("hp-view","list");render(false);});
 $("reset").addEventListener("click",()=>{haptic("confirm");resetAll();});$("sheetReset").addEventListener("click",()=>{haptic("confirm");resetAll();});
@@ -1731,8 +1975,14 @@ async function load(){
   try{const r=await fetch("data/games.json",{cache:"no-cache"});if(r.ok){const j=await r.json();if(Array.isArray(j.games)&&j.games.length)data=j;}}catch{}
   if(!data)data=sampleData();
   META={sample:!!data.sample,updated:data.updated,user:data.user||"JakSeRodi",plays:data.plays||0,leaders:data.leaders||[]};
-  GAMES=data.games;
-  GAMES.forEach(g=>{
+  const seenIds=new Set();
+  GAMES=(Array.isArray(data.games)?data.games:[]).filter(g=>g&&+g.id&&!seenIds.has(+g.id)&&seenIds.add(+g.id));
+  GAMES.forEach((g,i)=>{
+    g.id=+g.id;g.n=String(g.n||"Neznámá hra").trim()||"Neznámá hra";
+    const pair=(v)=>Array.isArray(v)?[+v[0]||0,+v[1]||+v[0]||0]:[0,0];
+    g.p=pair(g.p);if(g.p[1]<g.p[0])g.p=[g.p[1],g.p[0]];g.t=pair(g.t);if(g.t[1]<g.t[0])g.t=[g.t[1],g.t[0]];
+    g.y=+g.y||0;g.r=+g.r||0;g.w=+g.w||0;g.a=+g.a||0;g.rk=+g.rk||null;g.col=g.col||`hsl(${HUES[g.id%HUES.length]} 42% 32%)`;
+    g.acq=typeof g.acq==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(g.acq)?g.acq:"";g.lp=typeof g.lp==="string"?g.lp:"";
     g.c=g.c||[];g.s=g.s||[];g.m=g.m||[];g.des=g.des||[];g.best=g.best||[];g.rec=g.rec||[];g.who=g.who||[];g.exp=g.exp||[];g.alt=g.alt||[];
     const mv=g.c.filter(c=>STYLE_CATS.has(c));g.c=g.c.filter(c=>!STYLE_CATS.has(c));g.s=[...new Set([...g.s,...mv])];
     g.pl=g.pl||0;g.dcz=g.dcz||"";g.w=g.w||0;g.r=g.r||0;g.lp=g.lp||"";g.tt=g.t[1]||g.t[0]||0;
@@ -1741,7 +1991,7 @@ async function load(){
   });
   const freq=k=>{const f={};GAMES.forEach(g=>g[k].forEach(c=>f[c]=(f[c]||0)+1));return Object.keys(f).sort((a,b)=>f[b]-f[a]||a.localeCompare(b,"cs"));};
   THEMES=freq("c");STYLES=freq("s");DESIGNERS=freq("des");MECHS=freq("m");
-  const ys=GAMES.map(g=>g.y).filter(Boolean);YMIN=Math.min(...ys);YMAX=Math.max(...ys);S.year=[YMIN,YMAX];
+  const ys=GAMES.map(g=>g.y).filter(y=>y>1000&&y<3000);const cy=new Date().getFullYear();YMIN=ys.length?Math.min(...ys):cy;YMAX=ys.length?Math.max(...ys):cy;if(YMIN===YMAX)YMIN--;S.year=[YMIN,YMAX];
   $("owner").textContent="@"+META.user;
   buildStatic();
   dualRange("time",{min:0,max:240,step:15,label:"Herní doba"});
@@ -1751,7 +2001,9 @@ async function load(){
   if(!META.sample)readURL();
   q.value=S.qRaw;
   renderHero();renderFan();renderShelves();loadNews();
-  if(HAPT.supported){$("haptWrap").hidden=false;$("hapt").checked=HAPT.on;$("hapt").addEventListener("change",e=>{HAPT.set(e.target.checked);if(e.target.checked)haptic("confirm");});}
+  if(HAPT.supported){$("haptWrap").hidden=false;const paintH=()=>$("hseg").querySelectorAll("button").forEach(b=>b.setAttribute("aria-checked",b.dataset.hl===HAPT.level));paintH();
+    $("hseg").addEventListener("click",e=>{const b=e.target.closest("[data-hl]");if(!b)return;HAPT.set(b.dataset.hl);paintH();haptic("confirm");});}
+  loadExtras();
   (mqMobile.matches?$("slotDock"):$("slotTop")).appendChild($("searchBox"));
   q.placeholder=mqMobile.matches?"Hledat hru…":"Hledat hru, autora nebo téma";
   render(false);
